@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane fx:id="reserva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="hboxReserva" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <StackPane fx:id="imageWrapper" prefHeight="150.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fx:id="imageReserva" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <VBox fx:id="vboxForm" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="50.0" left="25.0" right="50.0" top="50.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="titleTextField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="Title">
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="priceTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="Price">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="clientNameTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Client name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextField>
+                  <Label fx:id="dayAndHourLabel" text="El dia x a la hora x:xxh">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Description" VBox.vgrow="SOMETIMES">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TextArea>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</StackPane>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane fx:id="user" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="vboxUser" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox fx:id="hboxImageForm" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane fx:id="imageWrapper" prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER" />
+                     </children>
+                  </StackPane>
+                  <VBox fx:id="vboxFormWrapper" alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="userTextField" maxWidth="1.7976931348623157E308" promptText="User">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="30.0" right="30.0" top="50.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField fx:id="emailTextField" maxWidth="1.7976931348623157E308" promptText="Email">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <TextArea fx:id="descriptionTextArea" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" promptText="Description" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="50.0" left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+            </TextArea>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
