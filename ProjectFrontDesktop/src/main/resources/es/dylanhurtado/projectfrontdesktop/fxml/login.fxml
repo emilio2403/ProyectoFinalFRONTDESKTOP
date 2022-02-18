@@ -33,7 +33,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button fx:id="loginButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT">
+      <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" text="Button" StackPane.alignment="BOTTOM_RIGHT">
          <StackPane.margin>
             <Insets bottom="30.0" right="30.0" />
          </StackPane.margin>

@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +11,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-public class MainController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MainController implements Initializable {
 
     @FXML
     private Label adminNameLabel;
@@ -35,6 +39,9 @@ public class MainController {
 
     @FXML
     private Button editButton;
+
+    @FXML
+    private Button addButton;
 
     @FXML
     private VBox futbol;
@@ -124,6 +131,92 @@ public class MainController {
     private FontIcon volleyballIcon;
 
     @FXML private StackPane login;
+    @FXML private StackPane list;
+    @FXML private StackPane pista;
+    @FXML private StackPane reserva;
+    @FXML private StackPane user;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showHome();
+    }
+    @FXML
+    private void logOut(){
+        login.setTranslateY(0);
+
+    }
+    @FXML
+    private void showListReservas(){
+        showList(list);
+
+    }
+    @FXML
+    private void showListPistas(){
+        showList(list);
+    }
+
+    @FXML
+    private void showPista(){
+        showPreview(pista);
+    }
+
+    private void showPreview(StackPane item) {
+        item.setTranslateX(0);
+        homeButton.setDisable(false);
+        homeButton.setVisible(true);
+        editButton.setDisable(false);
+        editButton.setVisible(true);
+        deleteButton.setDisable(false);
+        deleteButton.setVisible(true);
+        addButton.setDisable(true);
+        addButton.setVisible(false);
+        saveButton.setDisable(true);
+        saveButton.setVisible(false);
+    }
+
+    private void showList(StackPane item) {
+        item.setTranslateY(0);
+        homeButton.setDisable(false);
+        homeButton.setVisible(true);
+        editButton.setDisable(true);
+        editButton.setVisible(false);
+        deleteButton.setDisable(true);
+        deleteButton.setVisible(false);
+        addButton.setDisable(false);
+        addButton.setVisible(true);
+        saveButton.setDisable(true);
+        saveButton.setVisible(false);
+    }
+
+    @FXML
+    private void showReserva(){
+        showPreview(reserva);
+    }
+
+    @FXML
+    private void showUsuario(){
+        showPreview(user);
+    }
+
+    @FXML
+    private void showHome(){
+        list.setTranslateY(3000);
+        pista.setTranslateX(3000);
+        reserva.setTranslateX(3000);
+        user.setTranslateX(3000);
+        homeButton.setDisable(true);
+        homeButton.setVisible(false);
+        editButton.setDisable(true);
+        editButton.setVisible(false);
+        deleteButton.setDisable(true);
+        deleteButton.setVisible(false);
+        addButton.setDisable(true);
+        addButton.setVisible(false);
+        saveButton.setDisable(true);
+        saveButton.setVisible(false);
+    }
+
 
 }
 

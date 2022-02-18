@@ -34,4 +34,8 @@ public class LoginController {
     @FXML
     private VBox vboxInputs;
 
+    @FXML
+    private void login(){
+        login.setTranslateY(-3000);
+    }
 }

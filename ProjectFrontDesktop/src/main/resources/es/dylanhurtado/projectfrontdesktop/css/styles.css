@@ -1,0 +1,22 @@
+#login{
+    -fx-background-color: cyan;
+}
+#main{
+    -fx-background-color: blue;
+}
+#reserva{
+    -fx-background-color: red;
+}
+#pista{
+    -fx-background-color: yellow;
+}
+#user{
+    -fx-background-color: green;
+}
+#list{
+    -fx-background-color: orange;
+}
+
+.main-button{
+    -fx-background-color: purple;
+}

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.MainController">
+<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.MainController">
    <children>
       <VBox fx:id="vboxWrapperMain" prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -75,7 +75,7 @@
                <children>
                   <HBox fx:id="hboxView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
                      <children>
-                        <HBox fx:id="hboxPistas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <HBox fx:id="hboxPistas" styleClass="main-button" onMouseClicked="#showListPistas" accessibleRole="BUTTON" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
                               <FontIcon fx:id="iconPista" />
                               <Label fx:id="pistaLabel" text="Label" />
@@ -84,7 +84,7 @@
                               <Insets bottom="75.0" left="50.0" right="25.0" top="75.0" />
                            </HBox.margin>
                         </HBox>
-                        <HBox fx:id="hboxReservas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <HBox fx:id="hboxReservas" styleClass="main-button" onMouseClicked="#showListReservas" accessibleRole="BUTTON" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
                               <FontIcon fx:id="reservasIcon" />
                               <Label fx:id="reservasLabel" text="Label" />
@@ -99,27 +99,24 @@
             </StackPane>
          </children>
       </VBox>
-       <fx:include fx:id="pista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pista.fxml" StackPane.alignment="CENTER" />
-       <fx:include fx:id="reserva" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="reserva.fxml" StackPane.alignment="CENTER" />
-       <fx:include fx:id="user" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="user.fxml" StackPane.alignment="CENTER" />
+      <fx:include id="pista" fx:id="pista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pista.fxml" StackPane.alignment="CENTER" />
+      <fx:include id="reserva" fx:id="reserva" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="reserva.fxml" StackPane.alignment="CENTER" />
+      <fx:include id="user" fx:id="user" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="user.fxml" StackPane.alignment="CENTER" />
       <HBox fx:id="hboxDeleteEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" StackPane.alignment="TOP_RIGHT">
          <children>
             <Button fx:id="editButton" mnemonicParsing="false" text="Button" />
             <Button fx:id="deleteButton" mnemonicParsing="false" text="Button" />
          </children>
       </HBox>
-       <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
-        <fx:include fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="list.fxml" StackPane.alignment="CENTER" />
-      <Button fx:id="homeButton" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_LEFT" />
-      <Button fx:id="buttonLogout" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_LEFT">
+      <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="addButton" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_RIGHT" />
+      <fx:include id="list" fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="list.fxml" StackPane.alignment="CENTER" />
+      <Button fx:id="homeButton" onAction="#showHome" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_LEFT" />
+      <Button fx:id="buttonLogout" mnemonicParsing="false" onAction="#logOut" text="Button" StackPane.alignment="BOTTOM_LEFT">
          <graphic>
             <FontIcon fx:id="iconLogout" />
          </graphic>
       </Button>
-      <StackPane fx:id="loginWrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0">
-         <children>
-            <fx:include fx:id="login" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="login.fxml" StackPane.alignment="CENTER" />
-         </children>
-      </StackPane>
+      <fx:include id="login" fx:id="login" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="login.fxml" StackPane.alignment="CENTER" />
    </children>
 </StackPane>
