@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.MainController">
    <children>
       <VBox fx:id="vboxWrapperMain" prefHeight="200.0" prefWidth="100.0">
          <children>
@@ -99,18 +99,27 @@
             </StackPane>
          </children>
       </VBox>
+       <fx:include fx:id="pista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pista.fxml" StackPane.alignment="CENTER" />
+       <fx:include fx:id="reserva" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="reserva.fxml" StackPane.alignment="CENTER" />
+       <fx:include fx:id="user" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="user.fxml" StackPane.alignment="CENTER" />
       <HBox fx:id="hboxDeleteEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" StackPane.alignment="TOP_RIGHT">
          <children>
             <Button fx:id="editButton" mnemonicParsing="false" text="Button" />
             <Button fx:id="deleteButton" mnemonicParsing="false" text="Button" />
          </children>
       </HBox>
-      <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+       <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+        <fx:include fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="list.fxml" StackPane.alignment="CENTER" />
       <Button fx:id="homeButton" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_LEFT" />
       <Button fx:id="buttonLogout" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_LEFT">
          <graphic>
             <FontIcon fx:id="iconLogout" />
          </graphic>
       </Button>
+      <StackPane fx:id="loginWrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0">
+         <children>
+            <fx:include fx:id="login" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="login.fxml" StackPane.alignment="CENTER" />
+         </children>
+      </StackPane>
    </children>
 </StackPane>

@@ -123,5 +123,7 @@ public class MainController {
     @FXML
     private FontIcon volleyballIcon;
 
+    @FXML private StackPane login;
+
 }
 

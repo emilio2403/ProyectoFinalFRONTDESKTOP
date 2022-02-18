@@ -5,5 +5,6 @@ module es.dylanhurtado.projectfrontdesktop {
     requires org.kordamp.ikonli.javafx;
 
     opens es.dylanhurtado.projectfrontdesktop to javafx.fxml;
+    opens es.dylanhurtado.projectfrontdesktop.controllers to javafx.fxml;
     exports es.dylanhurtado.projectfrontdesktop;
 }
