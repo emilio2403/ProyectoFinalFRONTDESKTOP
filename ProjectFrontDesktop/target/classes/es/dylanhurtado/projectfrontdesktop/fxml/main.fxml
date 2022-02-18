@@ -27,27 +27,27 @@
                               </VBox>
                               <VBox fx:id="baloncesto" layoutX="100.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
                                  <children>
-                                    <FontIcon />
+                                    <FontIcon fx:id="baloncestoIcon" />
                                  </children>
                               </VBox>
                               <VBox fx:id="padel" layoutX="200.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
                                  <children>
-                                    <FontIcon />
+                                    <FontIcon fx:id="padelIcon" />
                                  </children>
                               </VBox>
                               <VBox fx:id="futbol" layoutX="300.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
                                  <children>
-                                    <FontIcon />
+                                    <FontIcon fx:id="futbolIcon" />
                                  </children>
                               </VBox>
                               <VBox fx:id="futbolSala" layoutX="400.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
                                  <children>
-                                    <FontIcon />
+                                    <FontIcon fx:id="futbolSalaIcon" />
                                  </children>
                               </VBox>
                               <VBox fx:id="volleyball" layoutX="500.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
                                  <children>
-                                    <FontIcon />
+                                    <FontIcon fx:id="volleyballIcon" />
                                  </children>
                               </VBox>
                            </children>

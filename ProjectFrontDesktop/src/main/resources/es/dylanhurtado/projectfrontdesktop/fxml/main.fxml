@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+   <children>
+      <VBox fx:id="vboxWrapperMain" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox fx:id="hboxToolbar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="75.0" prefWidth="700.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                    <content>
+                      <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="975.0">
+                           <children>
+                              <VBox fx:id="tenis" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="baloncesto" layoutX="100.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                    <FontIcon fx:id="baloncestoIcon" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="padel" layoutX="200.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                    <FontIcon fx:id="padelIcon" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="futbol" layoutX="300.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                    <FontIcon fx:id="futbolIcon" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="futbolSala" layoutX="400.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                    <FontIcon fx:id="futbolSalaIcon" />
+                                 </children>
+                              </VBox>
+                              <VBox fx:id="volleyball" layoutX="500.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="75.0" prefWidth="100.0">
+                                 <children>
+                                    <FontIcon fx:id="volleyballIcon" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <HBox fx:id="hboxUsers" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <FontIcon fx:id="userIcon" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="adminWrapper" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="adminNameLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="100.0" text="Label" HBox.hgrow="ALWAYS" />
+                        <StackPane fx:id="imageWrapper" prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="image" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <StackPane fx:id="stackPaneView" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox fx:id="hboxView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                     <children>
+                        <HBox fx:id="hboxPistas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <FontIcon fx:id="iconPista" />
+                              <Label fx:id="pistaLabel" text="Label" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="75.0" left="50.0" right="25.0" top="75.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox fx:id="hboxReservas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <FontIcon fx:id="reservasIcon" />
+                              <Label fx:id="reservasLabel" text="Label" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="75.0" left="25.0" right="50.0" top="75.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <HBox fx:id="hboxDeleteEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <Button fx:id="editButton" mnemonicParsing="false" text="Button" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Button" />
+         </children>
+      </HBox>
+      <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="homeButton" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_LEFT" />
+      <Button fx:id="buttonLogout" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_LEFT">
+         <graphic>
+            <FontIcon fx:id="iconLogout" />
+         </graphic>
+      </Button>
+   </children>
+</StackPane>
