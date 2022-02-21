@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
 <StackPane fx:id="list" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.ListController">
    <children>
       <VBox fx:id="vbox" prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
@@ -31,5 +32,17 @@
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
          </padding>
       </VBox>
+      <fx:include id="pista" fx:id="pista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="pista.fxml" StackPane.alignment="CENTER" />
+      <fx:include id="reserva" fx:id="reserva" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="reserva.fxml" StackPane.alignment="CENTER" />
+      <fx:include id="user" fx:id="user" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="user.fxml" StackPane.alignment="CENTER" />
+      <HBox fx:id="hboxDeleteEdit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <Button fx:id="editButton" mnemonicParsing="false" text="Button" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="Button" />
+         </children>
+      </HBox>
+      <Button fx:id="saveButton" mnemonicParsing="false" text="Button" StackPane.alignment="BOTTOM_RIGHT" />
+      <Button fx:id="addButton" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_RIGHT" />
+      <Button fx:id="homeButton" onAction="#showHome" mnemonicParsing="false" text="Button" StackPane.alignment="TOP_LEFT" />
    </children>
 </StackPane>

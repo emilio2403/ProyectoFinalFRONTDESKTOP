@@ -1,4 +1,5 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
+import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -40,4 +41,9 @@ public class ReservaController {
     @FXML
     private VBox vboxForm;
 
+    private Reserva selectedItem;
+    public void setReservaSelected(Reserva selectedItem) {
+        this.selectedItem=selectedItem;
+
+    }
 }
