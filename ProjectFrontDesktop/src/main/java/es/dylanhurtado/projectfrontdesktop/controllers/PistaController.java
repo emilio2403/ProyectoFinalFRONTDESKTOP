@@ -1,5 +1,5 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
-import es.dylanhurtado.projectfrontdesktop.model.Pista;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -36,6 +36,6 @@ public class PistaController {
     private Object selectedItem;
 
     public void setPistaSelected(Object selectedItem) {
-        this.selectedItem=selectedItem;
+        this.selectedItem = selectedItem;
     }
 }

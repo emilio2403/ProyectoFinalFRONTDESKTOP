@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class LoginController {
 
@@ -34,8 +36,13 @@ public class LoginController {
     @FXML
     private VBox vboxInputs;
 
+    private TranslateTransition loginAnimation;
+
     @FXML
-    private void login(){
-        login.setTranslateY(-3000);
+    private void login() {
+        loginAnimation = new TranslateTransition(Duration.millis(600), login);
+        loginAnimation.setFromY(0);
+        loginAnimation.setToY(-3000);
+        loginAnimation.play();
     }
 }

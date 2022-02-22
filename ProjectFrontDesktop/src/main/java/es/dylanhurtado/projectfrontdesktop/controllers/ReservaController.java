@@ -41,8 +41,8 @@ public class ReservaController {
     @FXML
     private VBox vboxForm;
 
-    private Reserva selectedItem;
-    public void setReservaSelected(Reserva selectedItem) {
+    private Object selectedItem;
+    public void setReservaSelected(Object selectedItem) {
         this.selectedItem=selectedItem;
 
     }

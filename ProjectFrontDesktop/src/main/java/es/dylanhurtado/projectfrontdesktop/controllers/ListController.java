@@ -1,8 +1,7 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
 import es.dylanhurtado.projectfrontdesktop.model.Pista;
-import es.dylanhurtado.projectfrontdesktop.model.Reserva;
-import es.dylanhurtado.projectfrontdesktop.model.User;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,15 +39,23 @@ public class ListController implements Initializable {
     @FXML
     private UserController userController;
 
-    @FXML private StackPane pista;
-    @FXML private StackPane reserva;
-    @FXML private StackPane user;
+    @FXML
+    private StackPane pista;
+    @FXML
+    private StackPane reserva;
+    @FXML
+    private StackPane user;
 
-    @FXML private Button homeButton;
-    @FXML private Button editButton;
-    @FXML private Button deleteButton;
-    @FXML private Button addButton;
-    @FXML private Button saveButton;
+    @FXML
+    private Button homeButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button saveButton;
 
     private ObservableList<Object> pistaObservableList;
     private ObservableList<Object> reservaObservableList;
@@ -57,6 +65,8 @@ public class ListController implements Initializable {
     private boolean reservasRef = false;
     private boolean usuariosRef = false;
 
+    private TranslateTransition animation;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -64,18 +74,19 @@ public class ListController implements Initializable {
         pistaObservableList = FXCollections.observableArrayList();
         reservaObservableList = FXCollections.observableArrayList();
         usuariosObservableList = FXCollections.observableArrayList();
-        pistaObservableList.addAll(new Pista(1L, "fsdf", "fdsf", 123d, "dfsd"),new Pista(2L, "fsdf", "fdsf", 123d, "dfsd"),new Pista(3L, "fsdf", "fdsf", 123d, "dfsd"));
+        pistaObservableList.addAll(new Pista(1L, "fsdf", "fdsf", 123d, "dfsd"), new Pista(2L, "fsdf", "fdsf", 123d, "dfsd"), new Pista(3L, "fsdf", "fdsf", 123d, "dfsd"));
         listView.setItems(pistaObservableList);
+
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 if (reservasRef) {
-                    reservaController.setReservaSelected((Reserva) listView.getSelectionModel().getSelectedItem());
+                    reservaController.setReservaSelected(listView.getSelectionModel().getSelectedItem());
                     showPreview(reserva);
                 } else if (pistasRef) {
                     pistaController.setPistaSelected(listView.getSelectionModel().getSelectedItem());
                     showPreview(pista);
                 } else if (usuariosRef) {
-                    userController.setUsuarioSelected((User) listView.getSelectionModel().getSelectedItem());
+                    userController.setUsuarioSelected(listView.getSelectionModel().getSelectedItem());
                     showPreview(user);
                 }
             }
@@ -83,60 +94,11 @@ public class ListController implements Initializable {
 
     }
 
-    public boolean isPistasRef() {
-        return pistasRef;
-    }
-
-    public void setPistasRef(boolean pistasRef) {
-        this.pistasRef = pistasRef;
-    }
-
-    public boolean isReservasRef() {
-        return reservasRef;
-    }
-
-    public void setReservasRef(boolean reservasRef) {
-        this.reservasRef = reservasRef;
-    }
-
-    public boolean isUsuariosRef() {
-        return usuariosRef;
-    }
-
-    public void setUsuariosRef(boolean usuariosRef) {
-        this.usuariosRef = usuariosRef;
-    }
-
-    public StackPane getPista() {
-        return pista;
-    }
-
-    public void setPista(StackPane pista) {
-        this.pista = pista;
-    }
-
-    public StackPane getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(StackPane reserva) {
-        this.reserva = reserva;
-    }
-
-    public StackPane getUser() {
-        return user;
-    }
-
-    public void setUser(StackPane user) {
-        this.user = user;
-    }
-
-    public Button getHomeButton() {
-        return homeButton;
-    }
-
-    private void showPreview(StackPane item){
-        item.setTranslateX(0);
+    private void showPreview(StackPane item) {
+        animation = new TranslateTransition(Duration.millis(600), item);
+        animation.setFromX(3000);
+        animation.setToX(0);
+        animation.play();
         deleteButton.setDisable(false);
         deleteButton.setVisible(true);
         addButton.setDisable(true);
@@ -150,16 +112,26 @@ public class ListController implements Initializable {
 
     }
 
+    private void hidePreview(StackPane item) {
+        animation = new TranslateTransition(Duration.millis(600), item);
+        animation.setFromX(0);
+        animation.setToX(3000);
+        animation.play();
+    }
+
 
     @FXML
-    private void showHome(){
+    private void showHome() {
         setPistasRef(false);
         setReservasRef(false);
         setUsuariosRef(false);
-        list.setTranslateY(3000);
-        getPista().setTranslateX(3000);
-        getReserva().setTranslateX(3000);
-        getUser().setTranslateX(3000);
+        hidePreview(pista);
+        hidePreview(reserva);
+        hidePreview(user);
+        animation = new TranslateTransition(Duration.millis(600), list);
+        animation.setFromY(0);
+        animation.setToY(3000);
+        animation.play();
         homeButton.setDisable(true);
         homeButton.setVisible(false);
         editButton.setDisable(true);
@@ -168,7 +140,39 @@ public class ListController implements Initializable {
         deleteButton.setVisible(false);
         saveButton.setDisable(true);
         saveButton.setVisible(false);
+    }
 
+    public void setPistasRef(boolean pistasRef) {
+        this.pistasRef = pistasRef;
+    }
+
+    public void setReservasRef(boolean reservasRef) {
+        this.reservasRef = reservasRef;
+    }
+
+    public void setUsuariosRef(boolean usuariosRef) {
+        this.usuariosRef = usuariosRef;
+    }
+
+
+    public ListView<Object> getListView() {
+        return listView;
+    }
+
+    public ObservableList<Object> getPistaObservableList() {
+        return pistaObservableList;
+    }
+
+    public ObservableList<Object> getReservaObservableList() {
+        return reservaObservableList;
+    }
+
+    public ObservableList<Object> getUsuariosObservableList() {
+        return usuariosObservableList;
+    }
+
+    public Button getHomeButton() {
+        return homeButton;
     }
 }
 

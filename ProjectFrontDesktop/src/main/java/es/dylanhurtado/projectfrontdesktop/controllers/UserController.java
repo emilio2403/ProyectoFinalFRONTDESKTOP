@@ -37,9 +37,9 @@ public class UserController {
 
     @FXML
     private VBox vboxUser;
-    private User selectedItem;
+    private Object selectedItem;
 
-    public void setUsuarioSelected(User selectedItem) {
+    public void setUsuarioSelected(Object selectedItem) {
         this.selectedItem=selectedItem;
 
     }

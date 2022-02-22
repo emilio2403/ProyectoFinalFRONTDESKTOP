@@ -54,7 +54,7 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <HBox fx:id="hboxUsers" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <HBox fx:id="hboxUsers" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" onMouseClicked="#showListUsuarios" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
                         <FontIcon fx:id="userIcon" />
                      </children>
