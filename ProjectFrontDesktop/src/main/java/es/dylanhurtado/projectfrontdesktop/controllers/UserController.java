@@ -1,6 +1,5 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
-import es.dylanhurtado.projectfrontdesktop.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -40,7 +39,7 @@ public class UserController {
     private Object selectedItem;
 
     public void setUsuarioSelected(Object selectedItem) {
-        this.selectedItem=selectedItem;
+        this.selectedItem = selectedItem;
 
     }
 }

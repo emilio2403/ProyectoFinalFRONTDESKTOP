@@ -1,6 +1,9 @@
 module es.dylanhurtado.projectfrontdesktop {
     requires javafx.controls;
     requires javafx.fxml;
+    requires retrofit2;
+    requires retrofit2.converter.gson;
+
 
     requires org.kordamp.ikonli.javafx;
 

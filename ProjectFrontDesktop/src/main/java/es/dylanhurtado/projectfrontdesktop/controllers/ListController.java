@@ -91,7 +91,6 @@ public class ListController implements Initializable {
                 }
             }
         });
-
     }
 
     private void showPreview(StackPane item) {
@@ -109,7 +108,6 @@ public class ListController implements Initializable {
         deleteButton.setVisible(true);
         saveButton.setDisable(true);
         saveButton.setVisible(false);
-
     }
 
     private void hidePreview(StackPane item) {
