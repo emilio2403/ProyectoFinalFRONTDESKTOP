@@ -1,22 +1,67 @@
-#login{
-    -fx-background-color: cyan;
+#login {
+    -fx-background-color: #023047;
 }
-#main{
+
+#main {
     -fx-background-color: blue;
 }
-#reserva{
+
+#reserva {
     -fx-background-color: red;
 }
-#pista{
+
+#pista {
     -fx-background-color: yellow;
 }
-#user{
+
+#user {
     -fx-background-color: green;
 }
-#list{
+
+#list {
     -fx-background-color: orange;
 }
 
-.main-button{
+.main-button {
     -fx-background-color: purple;
+}
+
+.menu-main-button {
+    -fx-background-color: #023047;
+    -fx-text-fill: #fb8500;
+}
+
+.text-field {
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-prompt-text-fill: #023047;
+    -fx-background-color: #ffb703;
+}
+
+.text-field:focused {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: #fb8500;
+    -fx-prompt-text-fill: #ffb703;
+    -fx-background-color: #ffb703;
+}
+
+.nav-button {
+    -fx-background-color: #219ebc;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nav-button:hover {
+    -fx-background-color: #8ecae6;
+    -fx-text-fill: #023047;
+}
+
+.nav-button:pressed {
+    -fx-background-color: #78ee9a;
+    -fx-text-fill: #023047;
+}
+
+.image-view-background {
+    -fx-opacity: 30%;
 }

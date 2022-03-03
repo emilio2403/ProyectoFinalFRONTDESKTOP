@@ -29,10 +29,8 @@ public class MainController implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private VBox baloncesto;
+    private Button baloncesto;
 
-    @FXML
-    private FontIcon baloncestoIcon;
 
     @FXML
     private Button buttonLogout;
@@ -47,16 +45,11 @@ public class MainController implements Initializable {
     private Button addButton;
 
     @FXML
-    private VBox futbol;
+    private Button futbol;
+
 
     @FXML
-    private FontIcon futbolIcon;
-
-    @FXML
-    private VBox futbolSala;
-
-    @FXML
-    private FontIcon futbolSalaIcon;
+    private Button futbolSala;
 
     @FXML
     private HBox hboxDeleteEdit;
@@ -95,7 +88,7 @@ public class MainController implements Initializable {
     private StackPane main;
 
     @FXML
-    private VBox padel;
+    private Button rugby;
 
     @FXML
     private FontIcon padelIcon;
@@ -119,7 +112,7 @@ public class MainController implements Initializable {
     private StackPane stackPaneView;
 
     @FXML
-    private VBox tenis;
+    private Button tenis;
 
     @FXML
     private FontIcon userIcon;
@@ -128,7 +121,7 @@ public class MainController implements Initializable {
     private VBox vboxWrapperMain;
 
     @FXML
-    private VBox volleyball;
+    private Button volleyball;
 
     @FXML
     private FontIcon volleyballIcon;

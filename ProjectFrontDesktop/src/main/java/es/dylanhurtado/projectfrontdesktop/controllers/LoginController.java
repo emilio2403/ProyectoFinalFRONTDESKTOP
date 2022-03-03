@@ -14,28 +14,20 @@ public class LoginController {
 
     @FXML
     private TextField emailTextField;
-
     @FXML
     private HBox hbox;
-
     @FXML
     private ImageView image;
-
-    @FXML
-    private StackPane imageWrapper;
-
     @FXML
     private StackPane login;
-
     @FXML
     private Button loginButton;
-
+    @FXML
+    private ImageView imageLoginBackground;
     @FXML
     private TextField passwordTextField;
-
     @FXML
     private VBox vboxInputs;
-
     private TranslateTransition loginAnimation;
 
     @FXML
