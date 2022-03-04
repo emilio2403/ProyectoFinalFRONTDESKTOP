@@ -19,7 +19,7 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </StackPane.margin>
          <children>
-              <ImageView fx:id="imageLoginBackground" fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view-background">
+              <ImageView fx:id="imageLoginBackground" fitHeight="450.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0" styleClass="image-view-background">
                <image>
                   <Image url="@../../../../img/bglogin.jpg" />
                </image>

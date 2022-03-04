@@ -1,67 +1,179 @@
-#login {
-    -fx-background-color: #023047;
-}
-
-#main {
-    -fx-background-color: blue;
-}
-
-#reserva {
-    -fx-background-color: red;
-}
-
-#pista {
-    -fx-background-color: yellow;
-}
-
-#user {
-    -fx-background-color: green;
+#user, #pista, #main, #reserva, #login {
+    -fx-background-color: linear-gradient(#8ecae6 0%, #219ebc 25%, #023047 50%);
 }
 
 #list {
-    -fx-background-color: orange;
+    -fx-background-color: linear-gradient(#57b0c2 0%, #0096c7 25%, #040550 50%);
 }
 
 .main-button {
-    -fx-background-color: purple;
+    -fx-background-color: linear-gradient(#ffd166 0%, #ffc53c 25%, #faac08 50%);
+}
+
+.main-button:hover {
+    -fx-background-color: #ffdb89;
+}
+
+.main-button:pressed {
+    -fx-background-color: linear-gradient(#4ddcb5 0%, #38d99b 25%, #00ff9d 50%);
+}
+
+.main-button .label {
+    -fx-text-fill: #073b4c;
+    -fx-font-family: "Malgun Gothic";
+    -fx-font-size: 24;
+}
+
+.main-button:hover .label {
+    -fx-text-fill: white;
+    -fx-font-size: 21;
+}
+
+.main-button:pressed .label {
+    -fx-text-fill: white;
+    -fx-font-size: 23;
+}
+
+.main-button .main-icons {
+    -fx-icon-color: #073b4c;
+    -fx-icon-size: 90;
+}
+
+.main-button:hover .main-icons {
+    -fx-icon-color: #0f4152;
+    -fx-icon-size: 80;
+}
+
+.main-button:pressed .main-icons {
+    -fx-icon-color: #8ecae6;
 }
 
 .menu-main-button {
-    -fx-background-color: #023047;
-    -fx-text-fill: #fb8500;
+    -fx-background-color: linear-gradient(#97f8e0 0%, #2de5b5 25%, #08cc9a 50%);
 }
 
-.text-field {
-    -fx-text-fill: white;
-    -fx-font-weight: normal;
+.menu-main-button .menu-button-icon {
+    -fx-icon-color: #023047;
+    -fx-icon-size: 56
+}
+
+.menu-main-button:hover {
+    -fx-background-color: #43f6c8;
+}
+
+.menu-main-button:hover .menu-button-icon {
+    -fx-icon-size: 50;
+}
+
+.menu-main-button:focused {
+    -fx-background-color: #023047;
+}
+
+.menu-main-button:focused .menu-button-icon {
+    -fx-icon-color: #fb8500
+}
+
+#user-icon {
+    -fx-icon-color: #023047;
+    -fx-icon-size: 56;
+}
+
+.main-button:hover #user-icon {
+    -fx-icon-color: #0f4152;
+    -fx-icon-size: 52;
+}
+
+.main-button:pressed #user-icon {
+    -fx-icon-color: #8ecae6;
+    -fx-icon-size: 54;
+}
+
+#hbox-admin {
+    -fx-background-color: linear-gradient(#424242 0%, #383838 25%, #282828 50%);
+}
+
+#icon-admin {
+    -fx-icon-color: #06d6a0
+}
+
+#admin-label {
+    -fx-text-fill: #F6F6F6;
+    -fx-font-family: "DejaVu Sans";
+    -fx-font-size: 16;
+}
+
+
+.text-field, .text-area, .text-area .content {
+    -fx-text-fill: #e8e0e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
     -fx-prompt-text-fill: #023047;
     -fx-background-color: #ffb703;
 }
 
-.text-field:focused {
+.text-field:focused, .text-area:focused, .text-area:focused .content {
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-size: 15;
     -fx-border-color: #fb8500;
     -fx-prompt-text-fill: #ffb703;
     -fx-background-color: #ffb703;
 }
 
 .nav-button {
-    -fx-background-color: #219ebc;
+    -fx-background-color: linear-gradient(#48cae4 0%, #0096c7 25%, #023e8a 50%);
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-size: 12;
+    -fx-padding: 10 20;
+}
+
+.nav-button .nav-icons {
+    -fx-icon-color: white
 }
 
 .nav-button:hover {
     -fx-background-color: #8ecae6;
     -fx-text-fill: #023047;
+    -fx-font-size: 13;
 }
 
 .nav-button:pressed {
-    -fx-background-color: #78ee9a;
+    -fx-background-color: linear-gradient(#14a628 0%, #18e050 25%, #6ffa96 50%);
     -fx-text-fill: #023047;
+    -fx-font-size: 11;
 }
 
 .image-view-background {
     -fx-opacity: 30%;
+}
+
+#hbox-title-list {
+    -fx-background-color: linear-gradient(#ffd166 0%, #fac241 25%, #eaa503 50%);
+}
+
+#title-list {
+    -fx-text-fill: #023047;
+    -fx-font-family: "DejaVu Sans";
+    -fx-font-size: 20;
+}
+
+#list-view {
+    -fx-orientation: vertical;
+    -fx-cell-size: 15;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+}
+
+.list-cell:even { /* <=== changed to even */
+    -fx-background-color: white;
+    -fx-cell-size: 24;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #48cae4;
+    -fx-text-fill: white;
 }
