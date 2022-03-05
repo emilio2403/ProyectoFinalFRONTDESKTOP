@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import es.dylanhurtado.projectfrontdesktop.model.Pista;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -33,9 +34,57 @@ public class PistaController {
 
     @FXML
     private VBox vboxForm;
-    private Object selectedItem;
+    private Pista selectedItem;
 
-    public void setPistaSelected(Object selectedItem) {
+    public void setPistaSelected(Pista selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public Pista getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void blockTextFields() {
+        titleTextField.setEditable(false);
+        priceTextField.setEditable(false);
+        descriptionTextField.setEditable(false);
+
+    }
+
+    public void unlockTextFields() {
+        titleTextField.setEditable(true);
+        priceTextField.setEditable(true);
+        descriptionTextField.setEditable(true);
+    }
+
+    public void clearTextFields() {
+        titleTextField.clear();
+        priceTextField.clear();
+        descriptionTextField.clear();
+    }
+
+
+    public TextArea getDescriptionTextField() {
+        return descriptionTextField;
+    }
+
+    public void setDescriptionTextField(TextArea descriptionTextField) {
+        this.descriptionTextField = descriptionTextField;
+    }
+
+    public TextField getPriceTextField() {
+        return priceTextField;
+    }
+
+    public void setPriceTextField(TextField priceTextField) {
+        this.priceTextField = priceTextField;
+    }
+
+    public TextField getTitleTextField() {
+        return titleTextField;
+    }
+
+    public void setTitleTextField(TextField titleTextField) {
+        this.titleTextField = titleTextField;
     }
 }

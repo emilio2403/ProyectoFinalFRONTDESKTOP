@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -40,11 +40,11 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextField>
-                  <Label fx:id="dayAndHourLabel" text="El dia x a la hora x:xxh">
+                  <DatePicker fx:id="dateField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="Fecha" showWeekNumbers="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
-                  </Label>
+                  </DatePicker>
                   <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" promptText="Description" VBox.vgrow="SOMETIMES">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

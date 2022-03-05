@@ -1,7 +1,9 @@
 package es.dylanhurtado.projectfrontdesktop.model;
 
+import java.util.UUID;
+
 public class Pista {
-    private Long id;
+    private UUID id;
     private String image;
     private String title;
     private Double price;
@@ -10,7 +12,7 @@ public class Pista {
     public Pista() {
     }
 
-    public Pista(Long id, String image, String title, Double price, String description) {
+    public Pista(UUID id, String image, String title, Double price, String description) {
         this.id = id;
         this.image = image;
         this.title = title;
@@ -18,11 +20,11 @@ public class Pista {
         this.description = description;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

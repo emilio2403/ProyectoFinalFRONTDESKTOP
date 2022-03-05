@@ -1,7 +1,9 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
+
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -9,13 +11,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class ReservaController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ReservaController implements Initializable {
 
     @FXML
     private TextField clientNameTextField;
 
     @FXML
-    private Label dayAndHourLabel;
+    private DatePicker dateField;
 
     @FXML
     private TextArea descriptionTextArea;
@@ -41,9 +46,81 @@ public class ReservaController {
     @FXML
     private VBox vboxForm;
 
-    private Object selectedItem;
-    public void setReservaSelected(Object selectedItem) {
-        this.selectedItem=selectedItem;
+    private Reserva selectedItem;
 
+    public void setReservaSelected(Reserva selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    public Reserva getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void blockTextFields() {
+        titleTextField.setEditable(false);
+        priceTextField.setEditable(false);
+        descriptionTextArea.setEditable(false);
+        clientNameTextField.setEditable(false);
+
+    }
+
+    public void unlockTextFields() {
+        titleTextField.setEditable(true);
+        priceTextField.setEditable(true);
+        descriptionTextArea.setEditable(true);
+        clientNameTextField.setEditable(true);
+    }
+
+    public void clearTextFields() {
+        titleTextField.clear();
+        priceTextField.clear();
+        descriptionTextArea.clear();
+        clientNameTextField.clear();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        blockTextFields();
+    }
+
+
+    public TextField getClientNameTextField() {
+        return clientNameTextField;
+    }
+
+    public void setClientNameTextField(TextField clientNameTextField) {
+        this.clientNameTextField = clientNameTextField;
+    }
+
+    public TextArea getDescriptionTextArea() {
+        return descriptionTextArea;
+    }
+
+    public void setDescriptionTextArea(TextArea descriptionTextArea) {
+        this.descriptionTextArea = descriptionTextArea;
+    }
+
+    public TextField getPriceTextField() {
+        return priceTextField;
+    }
+
+    public void setPriceTextField(TextField priceTextField) {
+        this.priceTextField = priceTextField;
+    }
+
+    public TextField getTitleTextField() {
+        return titleTextField;
+    }
+
+    public void setTitleTextField(TextField titleTextField) {
+        this.titleTextField = titleTextField;
+    }
+
+    public DatePicker getDateField() {
+        return dateField;
+    }
+
+    public void setDateField(DatePicker dateField) {
+        this.dateField = dateField;
     }
 }

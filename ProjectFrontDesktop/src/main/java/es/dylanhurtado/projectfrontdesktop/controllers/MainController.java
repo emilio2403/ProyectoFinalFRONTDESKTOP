@@ -1,6 +1,8 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -49,7 +51,7 @@ public class MainController implements Initializable {
 
 
     @FXML
-    private Button futbolSala;
+    private Button padel;
 
     @FXML
     private HBox hboxDeleteEdit;
@@ -139,6 +141,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        hideMainButtons();
     }
 
     @FXML
@@ -147,40 +150,76 @@ public class MainController implements Initializable {
         loginAnimation.setFromY(-3000);
         loginAnimation.setToY(0);
         loginAnimation.play();
-
+        list.setVisible(false);
+        hideMainButtons();
     }
 
     @FXML
     private void showListReservas() {
-        listController.getListView().setItems(listController.getReservaObservableList());
+        listController.getListView().setItems(mapToObject(listController.getReservaObservableList()));
         listController.setReservasRef(true);
+        listController.getTypeLabel().setText("Reservas");
+        listController.onActionReservaAdd();
         showList();
-
     }
 
     @FXML
     private void showListPistas() {
-        listController.getListView().setItems(listController.getPistaObservableList());
+        listController.getListView().setItems(mapToObject(listController.getPistaObservableList()));
         listController.setPistasRef(true);
+        listController.getTypeLabel().setText("Pistas");
+        listController.onActionPistaAdd();
         showList();
     }
 
     @FXML
     private void showListUsuarios() {
-        listController.getListView().setItems(listController.getUsuariosObservableList());
+        listController.getListView().setItems(mapToObject(listController.getUsuariosObservableList()));
         listController.setUsuariosRef(true);
+        listController.getTypeLabel().setText("Usuarios");
+        listController.onActionUserAdd();
         showList();
     }
 
+    private ObservableList<Object> mapToObject(ObservableList o) {
+        ObservableList<Object> observableList = FXCollections.observableArrayList();
+        observableList.addAll(o);
+        return observableList;
+    }
+
     private void showList() {
+        list.setVisible(true);
         listAnimation = new TranslateTransition(Duration.millis(600), list);
         listAnimation.setFromY(3000);
         listAnimation.setToY(0);
         listAnimation.play();
-        listController.getHomeButton().setDisable(false);
         listController.getHomeButton().setVisible(true);
+        listController.getAddButton().setVisible(true);
     }
 
+    private void hideMainButtons() {
+        hboxPistas.setVisible(false);
+        hboxReservas.setVisible(false);
+    }
+
+    @FXML
+    private void sportSelected() {
+        hboxPistas.setVisible(true);
+        hboxReservas.setVisible(true);
+        if (tenis.isFocused()) {
+            listController.setSportType("tenis");
+        } else if (baloncesto.isFocused()) {
+            listController.setSportType("baloncesto");
+        } else if (padel.isFocused()) {
+            listController.setSportType("padel");
+        } else if (futbol.isFocused()) {
+            listController.setSportType("futbol");
+        } else if (rugby.isFocused()) {
+            listController.setSportType("rugby");
+        } else {
+            listController.setSportType("volleyball");
+        }
+    }
 
 }
 

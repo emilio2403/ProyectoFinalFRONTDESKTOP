@@ -1,9 +1,10 @@
 package es.dylanhurtado.projectfrontdesktop.dto;
 
 import java.util.List;
+import java.util.UUID;
 
 public class ClienteDTO {
-    private long id;
+    private UUID id;
     private String nombre;
     private String correo;
     private String password;
@@ -13,7 +14,7 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
 
-    public ClienteDTO(long id, String nombre, String correo, String password, String foto, List<AlquilerDTO> alquileres) {
+    public ClienteDTO(UUID id, String nombre, String correo, String password, String foto, List<AlquilerDTO> alquileres) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
@@ -22,11 +23,11 @@ public class ClienteDTO {
         this.alquileres = alquileres;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

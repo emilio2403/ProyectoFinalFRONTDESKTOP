@@ -1,16 +1,17 @@
 package es.dylanhurtado.projectfrontdesktop.dto;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class AlquilerDTO {
-    private long id;
+    private UUID id;
     private LocalDateTime inicio;
     private LocalDateTime fin;
     private double coste;
     private InfraestructuraDTO infraestructura;
     private ClienteDTO cliente;
 
-    public AlquilerDTO(long id, LocalDateTime inicio, LocalDateTime fin, double coste, InfraestructuraDTO infraestructura, ClienteDTO cliente) {
+    public AlquilerDTO(UUID id, LocalDateTime inicio, LocalDateTime fin, double coste, InfraestructuraDTO infraestructura, ClienteDTO cliente) {
         this.id = id;
         this.inicio = inicio;
         this.fin = fin;
@@ -22,11 +23,11 @@ public class AlquilerDTO {
     public AlquilerDTO() {
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

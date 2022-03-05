@@ -2,9 +2,10 @@ package es.dylanhurtado.projectfrontdesktop.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class InfraestructuraDTO {
-    private long id;
+    private UUID id;
     private List<AlquilerDTO> alquileres;
     private String tipo;
     private String foto;
@@ -17,7 +18,7 @@ public class InfraestructuraDTO {
     public InfraestructuraDTO() {
     }
 
-    public InfraestructuraDTO(long id, List<AlquilerDTO> alquileres, String tipo, String foto, LocalDateTime apertura, LocalDateTime cierre, String descripcion, Double price) {
+    public InfraestructuraDTO(UUID id, List<AlquilerDTO> alquileres, String tipo, String foto, LocalDateTime apertura, LocalDateTime cierre, String descripcion, Double price) {
         this.id = id;
         this.alquileres = alquileres;
         this.tipo = tipo;
@@ -28,11 +29,11 @@ public class InfraestructuraDTO {
         this.price = price;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

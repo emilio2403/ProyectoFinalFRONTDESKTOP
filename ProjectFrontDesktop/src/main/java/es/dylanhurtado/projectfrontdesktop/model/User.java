@@ -1,26 +1,30 @@
 package es.dylanhurtado.projectfrontdesktop.model;
 
+import java.util.UUID;
+
 public class User {
-    private Long id;
+    private UUID id;
     private String image;
     private String username;
     private String email;
+    private String description;
 
     public User() {
     }
 
-    public User(Long id, String image, String username, String email) {
+    public User(UUID id, String image, String username, String email, String description) {
         this.id = id;
         this.image = image;
         this.username = username;
         this.email = email;
+        this.description = description;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -46,6 +50,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

@@ -168,7 +168,7 @@
     -fx-text-fill: white;
 }
 
-.list-cell:even { /* <=== changed to even */
+.list-cell:even {
     -fx-background-color: white;
     -fx-cell-size: 24;
 }
