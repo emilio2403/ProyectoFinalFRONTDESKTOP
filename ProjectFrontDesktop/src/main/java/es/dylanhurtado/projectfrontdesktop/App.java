@@ -26,7 +26,7 @@ public class App extends Application {
             locale = new Locale("en", "US");
         }
         ResourceBundle resourceBundle = ResourceBundle.getBundle("i18n/strings", locale);
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/main.fxml"),resourceBundle);
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Desktop App");
         stage.setScene(scene);

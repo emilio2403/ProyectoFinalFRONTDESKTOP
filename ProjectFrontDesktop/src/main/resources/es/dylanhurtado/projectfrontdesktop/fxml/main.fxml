@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.*?>
-<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+<StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity"
            minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../css/styles.css"
            xmlns="http://javafx.com/javafx/17"
            fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.MainController">
@@ -18,54 +19,54 @@
                         <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="75.0"
                               prefWidth="550.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <Button fx:id="tenis" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="tenis" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconTenis" iconLiteral="fas-baseball-ball" iconSize="56"
                                                   styleClass="menu-button-icon"/>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="baloncesto" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="baloncesto" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconBaloncesto" iconLiteral="fas-basketball-ball" iconSize="56"
                                                   selectionEnd="0" styleClass="menu-button-icon"/>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="padel" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="padel" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconPadel" iconLiteral="fas-table-tennis" iconSize="56"
                                                   styleClass="menu-button-icon"/>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="futbol" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="futbol" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconFutbol" iconLiteral="far-futbol" iconSize="56"
                                                   styleClass="menu-button-icon"/>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="rugby" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="rugby" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconRugby" iconLiteral="fas-football-ball" iconSize="56"
                                                   styleClass="menu-button-icon"/>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="volleyball" onAction="#sportSelected" maxHeight="-Infinity"
-                                        maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                                        mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0"
+                                <Button fx:id="volleyball" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                                        minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                        onAction="#sportSelected" prefHeight="75.0" prefWidth="75.0"
                                         styleClass="menu-main-button" HBox.hgrow="ALWAYS">
                                     <graphic>
                                         <FontIcon fx:id="iconVolley" iconLiteral="fas-volleyball-ball" iconSize="56"
@@ -74,10 +75,7 @@
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox fx:id="hboxUsers" alignment="CENTER" maxHeight="-Infinity"
-                              maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                              onMouseClicked="#showListUsuarios" prefHeight="75.0" prefWidth="100.0"
-                              styleClass="main-button">
+                        <HBox fx:id="hboxUsers" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#showListUsuarios" prefHeight="75.0" prefWidth="100.0" styleClass="main-button">
                             <children>
                                 <FontIcon id="user-icon" fx:id="userIcon" iconLiteral="fas-users" iconSize="56"/>
                             </children>
@@ -101,64 +99,63 @@
                 </HBox>
                 <StackPane fx:id="stackPaneView" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <HBox fx:id="hboxView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                              prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
+                        <HBox fx:id="hboxView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
                             <children>
-                                <HBox fx:id="hboxPistas" accessibleRole="BUTTON" alignment="CENTER"
-                                      maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                                      onMouseClicked="#showListPistas" prefHeight="100.0" prefWidth="200.0"
-                                      styleClass="main-button" HBox.hgrow="ALWAYS">
+                                <VBox fx:id="vboxPistas" accessibleRole="BUTTON" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#showListPistas" styleClass="main-button" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <FontIcon fx:id="iconPista" iconLiteral="fas-map-marked-alt" iconSize="90"
-                                                  styleClass="main-icons" HBox.hgrow="ALWAYS">
-                                            <HBox.margin>
-                                                <Insets/>
-                                            </HBox.margin>
-                                        </FontIcon>
-                                        <Label fx:id="pistaLabel" text="Pistas" HBox.hgrow="ALWAYS">
-                                            <HBox.margin>
-                                                <Insets left="40.0"/>
-                                            </HBox.margin>
+                                        <FontIcon fx:id="iconPista" iconLiteral="fas-map-marked-alt" iconSize="90" styleClass="main-icons"/>
+                                        <Label fx:id="pistaLabel" text="%mainpistas">
                                             <font>
                                                 <Font size="24.0"/>
                                             </font>
                                         </Label>
                                     </children>
                                     <HBox.margin>
-                                        <Insets bottom="75.0" left="50.0" right="25.0" top="75.0"/>
+                                        <Insets bottom="75.0" left="30.0" right="20.0" top="75.0"/>
                                     </HBox.margin>
-                                </HBox>
-                                <HBox fx:id="hboxReservas" accessibleRole="BUTTON" alignment="CENTER"
-                                      maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                                      onMouseClicked="#showListReservas" prefHeight="100.0" prefWidth="200.0"
-                                      styleClass="main-button" HBox.hgrow="ALWAYS">
+                                </VBox>
+                                <VBox fx:id="vboxReservas" accessibleRole="BUTTON" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#showListReservas" styleClass="main-button" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <FontIcon fx:id="reservasIcon" iconLiteral="fas-business-time" iconSize="90"
-                                                  styleClass="main-icons" HBox.hgrow="ALWAYS"/>
-                                        <Label fx:id="reservasLabel" text="Reservas" HBox.hgrow="ALWAYS">
-                                            <HBox.margin>
-                                                <Insets left="40.0"/>
-                                            </HBox.margin>
+                                        <FontIcon fx:id="reservasIcon" iconLiteral="fas-business-time" iconSize="90" styleClass="main-icons"/>
+                                        <Label fx:id="reservasLabel" text="%mainreservas">
                                             <font>
                                                 <Font size="24.0"/>
                                             </font>
                                         </Label>
                                     </children>
                                     <HBox.margin>
-                                        <Insets bottom="75.0" left="25.0" right="50.0" top="75.0"/>
+                                        <Insets bottom="75.0" top="75.0"/>
                                     </HBox.margin>
-                                </HBox>
+                                </VBox>
+                                <VBox fx:id="vboxGraficos" accessibleRole="BUTTON" alignment="CENTER"
+                                      maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                      onMouseClicked="#showGraficos" styleClass="main-button" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <FontIcon fx:id="graficosIcon" iconLiteral="fas-chart-line" iconSize="90"
+                                                  styleClass="main-icons"/>
+                                        <Label fx:id="graficosLabel" text="%maingraficos">
+                                            <font>
+                                                <Font size="24.0"/>
+                                            </font>
+                                        </Label>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets bottom="75.0" left="30.0" right="20.0" top="75.0"/>
+                                    </HBox.margin>
+                                </VBox>
                             </children>
                         </HBox>
                     </children>
                 </StackPane>
             </children>
         </VBox>
+        <fx:include id="grafico" fx:id="grafico" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    source="grafico.fxml" StackPane.alignment="CENTER"/>
         <fx:include id="list" fx:id="list" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
                     source="list.fxml" StackPane.alignment="CENTER"/>
 
-        <Button fx:id="buttonLogout" mnemonicParsing="false" onAction="#logOut" styleClass="nav-button" text="Log out"
-                StackPane.alignment="BOTTOM_LEFT">
+        <Button fx:id="buttonLogout" mnemonicParsing="false" onAction="#logOut" styleClass="nav-button"
+                text="%mainlogout" StackPane.alignment="BOTTOM_LEFT">
             <graphic>
                 <FontIcon fx:id="iconLogout" iconLiteral="fltfmz-previous-20" iconSize="20" styleClass="nav-icons"/>
             </graphic>

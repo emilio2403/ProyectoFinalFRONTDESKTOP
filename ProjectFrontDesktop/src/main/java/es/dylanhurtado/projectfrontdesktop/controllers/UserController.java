@@ -43,8 +43,7 @@ public class UserController {
         this.selectedItem = selectedItem;
 
     }
-
-
+    
     public void blockTextFields() {
         emailTextField.setEditable(false);
         userTextField.setEditable(false);

@@ -109,7 +109,7 @@ public class ListController implements Initializable {
     }
 
     private void setTextFieldsReserva() {
-        reservaController.getTitleTextField().setText(reservaController.getSelectedItem().getTitle());
+        reservaController.getSportTypeSelector().setValue(reservaController.getSelectedItem().getSportType());
         reservaController.getPriceTextField().setText(reservaController.getSelectedItem().getPrice().toString());
         reservaController.getDescriptionTextArea().setText(reservaController.getSelectedItem().getDescription());
         reservaController.getClientNameTextField().setText(reservaController.getSelectedItem().getUsername());
@@ -123,7 +123,7 @@ public class ListController implements Initializable {
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                reservaController.getSelectedItem().setTitle(reservaController.getTitleTextField().getText());
+                reservaController.getSelectedItem().setSportType(reservaController.getSportTypeSelector().getValue());
                 reservaController.getSelectedItem().setPrice(Double.valueOf(reservaController.getPriceTextField().getText()));
                 reservaController.getSelectedItem().setUsername(reservaController.getClientNameTextField().getText());
                 reservaController.getSelectedItem().setDate(reservaController.getDateField().getValue());
@@ -159,7 +159,7 @@ public class ListController implements Initializable {
             saveButton.setOnAction(actionEvent1 -> {
                 reservaObservableList.add(new Reserva(UUID.randomUUID(),
                         "",
-                        reservaController.getTitleTextField().getText(),
+                        reservaController.getSportTypeSelector().getValue(),
                         Double.valueOf(reservaController.getPriceTextField().getText()),
                         reservaController.getClientNameTextField().getText(),
                         reservaController.getDateField().getValue(),

@@ -17,10 +17,15 @@ import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    @FXML
+    private StackPane grafico;
+    @FXML
+    private GraficoController graficoController;
     @FXML
     private Label adminNameLabel;
 
@@ -57,10 +62,14 @@ public class MainController implements Initializable {
     private HBox hboxDeleteEdit;
 
     @FXML
-    private HBox hboxPistas;
+    private VBox vboxPistas;
 
     @FXML
-    private HBox hboxReservas;
+    private VBox vboxReservas;
+
+    @FXML
+    private VBox vboxGraficos;
+
 
     @FXML
     private HBox hboxToolbar;
@@ -141,8 +150,10 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        graficoController.hideVistaGraficos();
         hideMainButtons();
     }
+
 
     @FXML
     private void logOut() {
@@ -152,6 +163,7 @@ public class MainController implements Initializable {
         loginAnimation.play();
         list.setVisible(false);
         hideMainButtons();
+        graficoController.hideVistaGraficos();
     }
 
     @FXML
@@ -181,9 +193,51 @@ public class MainController implements Initializable {
         showList();
     }
 
-    private ObservableList<Object> mapToObject(ObservableList o) {
+    @FXML
+    private void showGraficos() {
+        TranslateTransition animation = new TranslateTransition(Duration.millis(600), grafico);
+        animation.setFromX(3000);
+        animation.setToX(0);
+        animation.play();
+        conteoParaGrafico();
+        graficoController.loadGraficoCircular();
+        graficoController.loadGraficoBarras();
+    }
+
+    private void conteoParaGrafico() {
+        int nTenis = 0, nBaloncesto = 0, nPadel = 0, nFutbol = 0, nRugby = 0, nVolleyball = 0;
+        Double totalTenis = 0.0, totalBaloncesto = 0.0, totalPadel = 0.0, totalFutbol = 0.0, totalRugby = 0.0, totalVolleyball = 0.0;
+        int size = listController.getReservaObservableList().size();
+        for (int i = 0; i < size; i++) {
+            if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("TENIS")) {
+                nTenis++;
+                totalTenis += listController.getReservaObservableList().get(i).getPrice();
+            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("BALONCESTO")) {
+                nBaloncesto++;
+                totalBaloncesto += listController.getReservaObservableList().get(i).getPrice();
+            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("PADEL")) {
+                nPadel++;
+                totalPadel += listController.getReservaObservableList().get(i).getPrice();
+            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("FUTBOL")) {
+                nFutbol++;
+                totalFutbol += listController.getReservaObservableList().get(i).getPrice();
+            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("RUGBY")) {
+                nRugby++;
+                totalBaloncesto += listController.getReservaObservableList().get(i).getPrice();
+            } else {
+                nVolleyball++;
+                totalVolleyball += listController.getReservaObservableList().get(i).getPrice();
+            }
+        }
+        List<Integer> porcentajes = List.of(nTenis * 100 / size, nBaloncesto * 100 / size, nPadel * 100 / size, nFutbol * 100 / size, nRugby * 100 / size, nVolleyball * 100 / size);
+        List<Double> ganancias = List.of(totalTenis, totalBaloncesto, totalPadel, totalFutbol, totalRugby, totalVolleyball);
+        graficoController.setPorcentajesCircular(porcentajes);
+        graficoController.setDatosGraficosBarras(ganancias);
+    }
+
+    private ObservableList<Object> mapToObject(ObservableList list) {
         ObservableList<Object> observableList = FXCollections.observableArrayList();
-        observableList.addAll(o);
+        observableList.addAll(list);
         return observableList;
     }
 
@@ -198,14 +252,16 @@ public class MainController implements Initializable {
     }
 
     private void hideMainButtons() {
-        hboxPistas.setVisible(false);
-        hboxReservas.setVisible(false);
+        vboxPistas.setVisible(false);
+        vboxReservas.setVisible(false);
+        vboxGraficos.setVisible(false);
     }
 
     @FXML
     private void sportSelected() {
-        hboxPistas.setVisible(true);
-        hboxReservas.setVisible(true);
+        vboxPistas.setVisible(true);
+        vboxReservas.setVisible(true);
+        vboxGraficos.setVisible(true);
         if (tenis.isFocused()) {
             listController.setSportType("tenis");
         } else if (baloncesto.isFocused()) {

@@ -20,6 +20,11 @@ public class Pista {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return title +"\t"+ price + "\t"+description;
+    }
+
     public UUID getId() {
         return id;
     }

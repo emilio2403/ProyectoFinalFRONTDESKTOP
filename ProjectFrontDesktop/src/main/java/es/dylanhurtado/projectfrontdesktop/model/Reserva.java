@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Reserva {
     private UUID id;
     private String image;
-    private String title;
+    private String sportType;
     private Double price;
     private String username;
     private LocalDate date;
@@ -15,14 +15,19 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(UUID id, String image, String title, Double price, String username, LocalDate date, String description) {
+    public Reserva(UUID id, String image, String sportType, Double price, String username, LocalDate date, String description) {
         this.id = id;
         this.image = image;
-        this.title = title;
+        this.sportType = sportType;
         this.price = price;
         this.username = username;
         this.description = description;
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return username+"\t"+price+" €\t"+date.toString();
     }
 
     public UUID getId() {
@@ -41,12 +46,12 @@ public class Reserva {
         this.image = image;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSportType() {
+        return sportType;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSportType(String type) {
+        this.sportType = type;
     }
 
     public Double getPrice() {

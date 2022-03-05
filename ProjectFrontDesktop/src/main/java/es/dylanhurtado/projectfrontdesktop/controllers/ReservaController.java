@@ -3,6 +3,7 @@ package es.dylanhurtado.projectfrontdesktop.controllers;
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -41,7 +42,7 @@ public class ReservaController implements Initializable {
     private StackPane reserva;
 
     @FXML
-    private TextField titleTextField;
+    private ChoiceBox<String> sportTypeSelector;
 
     @FXML
     private VBox vboxForm;
@@ -57,7 +58,8 @@ public class ReservaController implements Initializable {
     }
 
     public void blockTextFields() {
-        titleTextField.setEditable(false);
+        sportTypeSelector.setDisable(true);
+        sportTypeSelector.setOpacity(100);
         priceTextField.setEditable(false);
         descriptionTextArea.setEditable(false);
         clientNameTextField.setEditable(false);
@@ -65,14 +67,15 @@ public class ReservaController implements Initializable {
     }
 
     public void unlockTextFields() {
-        titleTextField.setEditable(true);
+        sportTypeSelector.setDisable(false);
         priceTextField.setEditable(true);
         descriptionTextArea.setEditable(true);
+        descriptionTextArea.setStyle(null);
         clientNameTextField.setEditable(true);
     }
 
     public void clearTextFields() {
-        titleTextField.clear();
+        sportTypeSelector.setValue("");
         priceTextField.clear();
         descriptionTextArea.clear();
         clientNameTextField.clear();
@@ -108,12 +111,12 @@ public class ReservaController implements Initializable {
         this.priceTextField = priceTextField;
     }
 
-    public TextField getTitleTextField() {
-        return titleTextField;
+    public ChoiceBox<String> getSportTypeSelector() {
+        return sportTypeSelector;
     }
 
-    public void setTitleTextField(TextField titleTextField) {
-        this.titleTextField = titleTextField;
+    public void setSportTypeSelector(ChoiceBox<String> sportTypeSelector) {
+        this.sportTypeSelector = sportTypeSelector;
     }
 
     public DatePicker getDateField() {
