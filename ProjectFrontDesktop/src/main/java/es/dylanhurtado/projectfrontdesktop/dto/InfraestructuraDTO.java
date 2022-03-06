@@ -1,28 +1,31 @@
 package es.dylanhurtado.projectfrontdesktop.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 public class InfraestructuraDTO {
     private UUID id;
     private List<AlquilerDTO> alquileres;
+    private String nombre;
     private String tipo;
     private String foto;
-    private LocalDateTime apertura;
-    private LocalDateTime cierre;
+    private int apertura;
+    private int cierre;
+    private double coste;
 
 
     public InfraestructuraDTO() {
     }
 
-    public InfraestructuraDTO(UUID id, List<AlquilerDTO> alquileres, String tipo, String foto, LocalDateTime apertura, LocalDateTime cierre, String descripcion, Double price) {
+    public InfraestructuraDTO(UUID id, List<AlquilerDTO> alquileres, String nombre, String tipo, String foto, int apertura, int cierre, double coste) {
         this.id = id;
         this.alquileres = alquileres;
+        this.nombre = nombre;
         this.tipo = tipo;
         this.foto = foto;
         this.apertura = apertura;
         this.cierre = cierre;
+        this.coste = coste;
     }
 
     public UUID getId() {
@@ -57,19 +60,35 @@ public class InfraestructuraDTO {
         this.foto = foto;
     }
 
-    public LocalDateTime getApertura() {
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getApertura() {
         return apertura;
     }
 
-    public void setApertura(LocalDateTime apertura) {
+    public void setApertura(int apertura) {
         this.apertura = apertura;
     }
 
-    public LocalDateTime getCierre() {
+    public int getCierre() {
         return cierre;
     }
 
-    public void setCierre(LocalDateTime cierre) {
+    public void setCierre(int cierre) {
         this.cierre = cierre;
+    }
+
+    public double getCoste() {
+        return coste;
+    }
+
+    public void setCoste(double coste) {
+        this.coste = coste;
     }
 }

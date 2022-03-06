@@ -11,6 +11,7 @@ public class ClienteDTO {
     private String foto;
     private List<AlquilerDTO> alquileres;
     private LoginDTO login;
+
     public ClienteDTO() {
     }
 

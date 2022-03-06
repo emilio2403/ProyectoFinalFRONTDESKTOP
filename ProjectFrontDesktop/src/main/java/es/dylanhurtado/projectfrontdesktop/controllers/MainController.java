@@ -196,21 +196,19 @@ public class MainController implements Initializable {
         listController.getTypeLabel().setText("Reservas");
         listController.onActionReservaAdd();
         showList();
-        getReservasAPI();
 
     }
-    private void getReservasAPI() throws IOException {
+    private void getInfraestructuraTipo() throws IOException {
         Response<List<InfraestructuraDTO>> infraestructuraResponse = restOperations.infraestructuraByTipo(listController.getSportType()).execute();
         if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
             List<InfraestructuraDTO> infraestructurasDTO = infraestructuraResponse.body();
-            if (infraestructurasDTO != null) {
-                listController.addReservastoList(mapper.toReserva(infraestructurasDTO));
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error 404");
-                alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
-                alert.show();
-            }
+            listController.addReservastoList(mapper.toReserva(infraestructurasDTO));
+            listController.addPistastoList(mapper.toPista(infraestructurasDTO));
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error 404");
+            alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
+            alert.show();
         }
     }
 
@@ -221,22 +219,6 @@ public class MainController implements Initializable {
         listController.getTypeLabel().setText("Pistas");
         listController.onActionPistaAdd();
         showList();
-        getPistasAPI();
-    }
-
-    private void getPistasAPI() throws IOException {
-        Response<List<InfraestructuraDTO>> infraestructuraResponse = restOperations.infraestructuraByTipo(listController.getSportType()).execute();
-        if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
-            List<InfraestructuraDTO> infraestructurasDTO = infraestructuraResponse.body();
-            if (infraestructurasDTO != null) {
-                listController.addPistastoList(mapper.toPista(infraestructurasDTO));
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error 404");
-                alert.setHeaderText("Llamada a la api fallida al cargar las pistas");
-                alert.show();
-            }
-        }
     }
 
     @FXML
@@ -260,8 +242,8 @@ public class MainController implements Initializable {
             alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
             alert.show();
         }
-
     }
+
     @FXML
     private void showGraficos() {
         TranslateTransition animation = new TranslateTransition(Duration.millis(600), grafico);
@@ -344,10 +326,9 @@ public class MainController implements Initializable {
         } else if (rugby.isFocused()) {
             listController.setSportType("RUGBY");
         } else {
-            listController.setSportType("VOLLEY");
+            listController.setSportType("VOLEY");
         }
-        getReservasAPI();
-        getPistasAPI();
+        getInfraestructuraTipo();
     }
 
 }

@@ -7,6 +7,8 @@ import es.dylanhurtado.projectfrontdesktop.model.Pista;
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import es.dylanhurtado.projectfrontdesktop.model.User;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +20,7 @@ public class Mapper {
         pista.setTitle(item.getTipo());
         pista.setDescription("En 1990, Kotlin fundo esta pista. Desde ese momento Kotlin comenzo su reinado malvado.");
         pista.setImage(String.valueOf(item.getFoto()));
-        pista.setPrice(item.getAlquileres().get(0).getCoste());
+        pista.setPrice(item.getCoste());
         return pista;
     }
 
@@ -53,7 +55,8 @@ public class Mapper {
         reserva.setImage("");
         reserva.setSportType(item.getInfraestructura().getTipo());
         reserva.setPrice(item.getCoste());
-        reserva.setDate(item.getFin().toLocalDate());
+        reserva.setDate(LocalDate.of(item.getYear(),item.getMonth(),item.getDay()));
+        //falta hora
         reserva.setDescription("Lo mas importante son los deportes?. Por supuesto que no tu has visto los billetes de 50 de al lado :)");
         return reserva;
     }

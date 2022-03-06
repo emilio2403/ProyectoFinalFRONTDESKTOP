@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 import java.util.List;
 
 public interface RestOperations {
-    @GET("infraestructura/all")
+    @GET("/infraestructura/all")
     Call<List<InfraestructuraDTO>> getInfrastructuras();
 
     @GET("/cliente/all")

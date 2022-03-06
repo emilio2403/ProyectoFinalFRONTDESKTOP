@@ -351,10 +351,12 @@ public class ListController implements Initializable {
     public void addReservastoList(List<Reserva> reservas){
         reservaObservableList.clear();
         reservaObservableList.addAll(reservas);
+        listView.setItems(reservaObservableList);
     }
     public void addPistastoList(List<Pista> pistas){
         pistaObservableList.clear();
         pistaObservableList.addAll(pistas);
+        listView.setItems(pistaObservableList);
     }
     public void addUserstoList(List<User> users){
         usuariosObservableList.clear();
