@@ -12,13 +12,15 @@ public class InfraestructuraDTO {
     private int apertura;
     private int cierre;
     private double coste;
+    private String descripcion;
 
 
     public InfraestructuraDTO() {
+        id=UUID.randomUUID();
     }
 
-    public InfraestructuraDTO(UUID id, List<AlquilerDTO> alquileres, String nombre, String tipo, String foto, int apertura, int cierre, double coste) {
-        this.id = id;
+    public InfraestructuraDTO(List<AlquilerDTO> alquileres, String nombre, String tipo, String foto, int apertura, int cierre, double coste, String descripcion) {
+        this.id = UUID.randomUUID();
         this.alquileres = alquileres;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -26,6 +28,7 @@ public class InfraestructuraDTO {
         this.apertura = apertura;
         this.cierre = cierre;
         this.coste = coste;
+        this.descripcion = descripcion;
     }
 
     public UUID getId() {
@@ -90,5 +93,13 @@ public class InfraestructuraDTO {
 
     public void setCoste(double coste) {
         this.coste = coste;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

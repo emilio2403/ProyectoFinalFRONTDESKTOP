@@ -3,6 +3,8 @@ package es.dylanhurtado.projectfrontdesktop.controllers;
 import es.dylanhurtado.projectfrontdesktop.model.Pista;
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import es.dylanhurtado.projectfrontdesktop.model.User;
+import es.dylanhurtado.projectfrontdesktop.rest.Config;
+import es.dylanhurtado.projectfrontdesktop.rest.RestOperations;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import retrofit2.Response;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -72,10 +76,13 @@ public class ListController implements Initializable {
 
     private String sportType;
 
+    private RestOperations restOperations;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showHome();
+        restOperations= Config.getService();
         pistaObservableList = FXCollections.observableArrayList();
         reservaObservableList = FXCollections.observableArrayList();
         usuariosObservableList = FXCollections.observableArrayList();
@@ -206,8 +213,23 @@ public class ListController implements Initializable {
             alert.setContentText("Estas seguro/a ?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
-                showHome();
-                pistaObservableList.remove(pistaController.getSelectedItem());
+                try {
+                    Response response=restOperations.infraestructuraDelete(pistaController.getSelectedItem().getId()).execute();
+                    if(response.isSuccessful()&&response.code()==204){
+                        showHome();
+                        pistaObservableList.remove(pistaController.getSelectedItem());
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                    alert2.show();
+                }
             }
         });
     }
@@ -266,6 +288,7 @@ public class ListController implements Initializable {
             alert.setContentText("Estas seguro/a ?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
+
                 showHome();
                 usuariosObservableList.remove(userController.getSelectedItem());
             }

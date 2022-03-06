@@ -15,8 +15,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -46,13 +44,13 @@ public class LoginController implements Initializable{
     @FXML
     private void login() throws IOException {
         if (!emailTextField.getText().equals("") && !passwordTextField.getText().equals("")) {
-            /*Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
-            if (loginResponse.isSuccessful() && loginResponse.code() == 200) {*/
+            //Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
+            //if (loginResponse.isSuccessful() && loginResponse.code() == 200) {
                 //AdminDTO admin= (AdminDTO) loginResponse.body();
                 loginAnimation = new TranslateTransition(Duration.millis(600), login);
                 loginAnimation.setFromY(0);
                 loginAnimation.setToY(-3000);
-                loginAnimation.play();}
+                loginAnimation.play();
             /*}else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Changing the language");
@@ -64,8 +62,8 @@ public class LoginController implements Initializable{
             alert.setTitle("Changing the language");
             alert.setHeaderText("Press on save and restart to save changes");
             alert.show();
+            */
         }
-        */
     }
 
     @Override
