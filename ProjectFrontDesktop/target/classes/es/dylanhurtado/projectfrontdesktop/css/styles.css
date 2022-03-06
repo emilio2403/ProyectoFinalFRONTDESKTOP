@@ -1,6 +1,7 @@
-#user, #pista, #main, #reserva, #login, #grafico {
+#user, #pista, #main, #reserva, #grafico {
     -fx-background-color: linear-gradient(#8ecae6 0%, #219ebc 25%, #023047 50%);
 }
+#login{-fx-background-color: white}
 
 #list {
     -fx-background-color: linear-gradient(#57b0c2 0%, #0096c7 25%, #040550 50%);
@@ -86,6 +87,9 @@
 .main-button:pressed #user-icon {
     -fx-icon-color: #8ecae6;
     -fx-icon-size: 54;
+}
+#toolbar-main{
+    -fx-background-color: linear-gradient(#424242 0%, #383838 25%, #282828 50%);
 }
 
 #hbox-admin {

@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
 <StackPane fx:id="reserva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.dylanhurtado.projectfrontdesktop.controllers.ReservaController">
    <children>
       <HBox fx:id="hboxReserva" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="imageReserva" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="5.0" HBox.hgrow="ALWAYS" />
+            <ImageView fx:id="imageReserva" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" scaleX="1.1" scaleY="3.0" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../../../../img/reserva.jpg" />
+               </image></ImageView>
             <VBox fx:id="vboxForm" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets bottom="50.0" left="25.0" right="50.0" top="50.0" />
