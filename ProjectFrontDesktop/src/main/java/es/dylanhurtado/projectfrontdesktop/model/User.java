@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class User {
     private UUID id;
+    private String nombre;
     private String image;
     private String username;
     private String email;

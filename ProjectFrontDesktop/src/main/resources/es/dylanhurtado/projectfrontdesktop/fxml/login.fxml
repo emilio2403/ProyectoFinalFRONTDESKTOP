@@ -49,7 +49,7 @@
                                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                             </padding>
                         </TextField>
-                        <PasswordField promptText="%loginpassword">
+                        <PasswordField fx:id="passwordTextField" promptText="%loginpassword">
                             <VBox.margin>
                                 <Insets bottom="25.0" left="50.0" right="50.0" top="25.0" />
                             </VBox.margin>

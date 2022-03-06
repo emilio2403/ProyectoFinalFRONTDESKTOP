@@ -3,6 +3,7 @@ module es.dylanhurtado.projectfrontdesktop {
     requires javafx.fxml;
     requires retrofit2;
     requires retrofit2.converter.gson;
+    requires java.sql;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.fluentui;

@@ -1,7 +1,7 @@
 package es.dylanhurtado.projectfrontdesktop.rest;
 
 public class Config {
-    private static final String url = "https://randomuser.me";
+    private static final String url = "http://localhost:7777";
 
     private Config() {
     }
