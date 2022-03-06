@@ -1,5 +1,9 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import es.dylanhurtado.projectfrontdesktop.dto.AdminDTO;
+import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
+import es.dylanhurtado.projectfrontdesktop.rest.Config;
+import es.dylanhurtado.projectfrontdesktop.rest.RestOperations;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +19,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+import retrofit2.Response;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -32,6 +38,10 @@ public class MainController implements Initializable {
     @FXML
     private HBox adminWrapper;
 
+    @FXML
+    private HBox messageWrapper;
+
+    @FXML Label messageLabel;
     @FXML
     private AnchorPane anchorPane;
 
@@ -145,11 +155,17 @@ public class MainController implements Initializable {
     @FXML
     private ListController listController;
 
+    @FXML
+    private LoginController loginController;
+
     private TranslateTransition loginAnimation, listAnimation;
+    private RestOperations restOperations;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        restOperations = Config.getService();
+        messageWrapper.setVisible(true);
         graficoController.hideVistaGraficos();
         hideMainButtons();
     }
@@ -164,6 +180,8 @@ public class MainController implements Initializable {
         list.setVisible(false);
         hideMainButtons();
         graficoController.hideVistaGraficos();
+        loginController.getEmailTextField().clear();
+        loginController.getPasswordTextField().clear();
     }
 
     @FXML
@@ -255,24 +273,36 @@ public class MainController implements Initializable {
         vboxPistas.setVisible(false);
         vboxReservas.setVisible(false);
         vboxGraficos.setVisible(false);
+        messageWrapper.setVisible(true);
     }
 
     @FXML
-    private void sportSelected() {
+    private void sportSelected() throws IOException {
+        messageWrapper.setVisible(false);
         vboxPistas.setVisible(true);
         vboxReservas.setVisible(true);
         vboxGraficos.setVisible(true);
+        Response<InfraestructuraDTO> infraestructuraResponse=null;
         if (tenis.isFocused()) {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("TENIS").execute();
             listController.setSportType("tenis");
+            if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
+                
+            }
         } else if (baloncesto.isFocused()) {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("BALONCESTO").execute();
             listController.setSportType("baloncesto");
         } else if (padel.isFocused()) {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("PADEL").execute();
             listController.setSportType("padel");
         } else if (futbol.isFocused()) {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("FUTBOL").execute();
             listController.setSportType("futbol");
         } else if (rugby.isFocused()) {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("RUGBY").execute();
             listController.setSportType("rugby");
         } else {
+            infraestructuraResponse = restOperations.infraestructuraByTipo("VOLLEY").execute();
             listController.setSportType("volleyball");
         }
     }

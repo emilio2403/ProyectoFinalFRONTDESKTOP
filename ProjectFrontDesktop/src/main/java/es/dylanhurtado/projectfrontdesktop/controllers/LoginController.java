@@ -46,14 +46,14 @@ public class LoginController implements Initializable{
     @FXML
     private void login() throws IOException {
         if (!emailTextField.getText().equals("") && !passwordTextField.getText().equals("")) {
-            Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
-            if (loginResponse.isSuccessful() && loginResponse.code() == 200) {
-                AdminDTO admin= (AdminDTO) loginResponse.body();
+            /*Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
+            if (loginResponse.isSuccessful() && loginResponse.code() == 200) {*/
+                //AdminDTO admin= (AdminDTO) loginResponse.body();
                 loginAnimation = new TranslateTransition(Duration.millis(600), login);
                 loginAnimation.setFromY(0);
                 loginAnimation.setToY(-3000);
-                loginAnimation.play();
-            }else{
+                loginAnimation.play();}
+            /*}else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Changing the language");
                 alert.setHeaderText("Press on save and restart to save changes");
@@ -65,10 +65,27 @@ public class LoginController implements Initializable{
             alert.setHeaderText("Press on save and restart to save changes");
             alert.show();
         }
+        */
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         restOperations = Config.getService();
+    }
+
+    public TextField getEmailTextField() {
+        return emailTextField;
+    }
+
+    public void setEmailTextField(TextField emailTextField) {
+        this.emailTextField = emailTextField;
+    }
+
+    public TextField getPasswordTextField() {
+        return passwordTextField;
+    }
+
+    public void setPasswordTextField(TextField passwordTextField) {
+        this.passwordTextField = passwordTextField;
     }
 }

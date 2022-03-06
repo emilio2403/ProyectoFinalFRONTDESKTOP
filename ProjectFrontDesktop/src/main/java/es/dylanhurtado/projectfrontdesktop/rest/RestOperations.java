@@ -19,4 +19,6 @@ public interface RestOperations {
     @GET("/admin/login")
     Call<AdminDTO> adminLogin(@Query(value = "mail") String mail,
                               @Query(value = "password") String password);
+    @GET("/infraestructura/tipo")
+    Call<InfraestructuraDTO> infraestructuraByTipo(@Query(value = "tipo") String tipo);
 }
