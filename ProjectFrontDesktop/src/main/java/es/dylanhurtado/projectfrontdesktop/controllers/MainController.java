@@ -253,14 +253,12 @@ public class MainController implements Initializable {
         Response<List<ClienteDTO>> clientResponse = restOperations.getClientes().execute();
         if (clientResponse.isSuccessful() && clientResponse.code() == 200) {
             List<ClienteDTO> clientes = clientResponse.body();
-            if (clientes != null) {
-                listController.addUserstoList(mapper.toUser(clientes));
-            }else{
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error 404");
-                alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
-                alert.show();
-            }
+            listController.addUserstoList(mapper.toUser(clientes));
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error 404");
+            alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
+            alert.show();
         }
 
     }

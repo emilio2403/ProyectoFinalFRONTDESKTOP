@@ -25,7 +25,7 @@ public class ListController implements Initializable {
     private StackPane list;
 
     @FXML
-    private ListView<Object> listView;
+    private ListView listView;
 
     @FXML
     private Label typeLabel;
@@ -359,6 +359,7 @@ public class ListController implements Initializable {
     public void addUserstoList(List<User> users){
         usuariosObservableList.clear();
         usuariosObservableList.addAll(users);
+        listView.setItems(usuariosObservableList);
     }
 
     public ListView<Object> getListView() {

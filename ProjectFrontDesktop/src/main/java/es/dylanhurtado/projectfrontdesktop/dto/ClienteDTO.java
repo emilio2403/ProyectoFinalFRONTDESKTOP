@@ -10,7 +10,7 @@ public class ClienteDTO {
     private String password;
     private String foto;
     private List<AlquilerDTO> alquileres;
-
+    private LoginDTO login;
     public ClienteDTO() {
     }
 
@@ -69,5 +69,13 @@ public class ClienteDTO {
 
     public void setAlquileres(List<AlquilerDTO> alquileres) {
         this.alquileres = alquileres;
+    }
+
+    public LoginDTO getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginDTO login) {
+        this.login = login;
     }
 }
