@@ -18,9 +18,11 @@ public class Mapper {
         Pista pista = new Pista();
         pista.setId(item.getId());
         pista.setTitle(item.getTipo());
-        pista.setDescription("En 1990, Kotlin fundo esta pista. Desde ese momento Kotlin comenzo su reinado malvado.");
+        pista.setDescription(item.getDescripcion());
         pista.setImage(String.valueOf(item.getFoto()));
         pista.setPrice(item.getCoste());
+        pista.setApertura(item.getApertura());
+        pista.setCierre(item.getCierre());
         return pista;
     }
 
@@ -56,8 +58,9 @@ public class Mapper {
         reserva.setSportType(item.getInfraestructura().getTipo());
         reserva.setPrice(item.getCoste());
         reserva.setDate(LocalDate.of(item.getYear(),item.getMonth(),item.getDay()));
-        //falta hora
-        reserva.setDescription("Lo mas importante son los deportes?. Por supuesto que no tu has visto los billetes de 50 de al lado :)");
+        reserva.setPista(this.toPista(item.getInfraestructura()));
+        reserva.setInicio(item.getInicio());
+        reserva.setFin(item.getFin());
         return reserva;
     }
 }

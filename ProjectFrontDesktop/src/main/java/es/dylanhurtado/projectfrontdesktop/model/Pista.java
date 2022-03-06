@@ -8,16 +8,24 @@ public class Pista {
     private String title;
     private Double price;
     private String description;
+    private int apertura;
+    private int cierre;
 
     public Pista() {
     }
 
-    public Pista(UUID id, String image, String title, Double price, String description) {
+    public Pista(UUID id, String image, String title, Double price, String description,int apertura, int cierre) {
         this.id = id;
         this.image = image;
         this.title = title;
         this.price = price;
         this.description = description;
+        this.apertura = apertura;
+        this.cierre = cierre;
+    }
+
+    public Pista(String title) {
+        this.title=title;
     }
 
     @Override
@@ -63,5 +71,21 @@ public class Pista {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getApertura() {
+        return apertura;
+    }
+
+    public void setApertura(int apertura) {
+        this.apertura = apertura;
+    }
+
+    public int getCierre() {
+        return cierre;
+    }
+
+    public void setCierre(int cierre) {
+        this.cierre = cierre;
     }
 }

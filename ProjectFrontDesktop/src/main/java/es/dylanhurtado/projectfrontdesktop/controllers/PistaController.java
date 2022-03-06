@@ -33,6 +33,12 @@ public class PistaController {
     private TextField titleTextField;
 
     @FXML
+    private TextField aperturaField;
+
+    @FXML
+    private TextField cierreTextField;
+
+    @FXML
     private VBox vboxForm;
     private Pista selectedItem;
 
@@ -48,6 +54,8 @@ public class PistaController {
         titleTextField.setEditable(false);
         priceTextField.setEditable(false);
         descriptionTextField.setEditable(false);
+        aperturaField.setEditable(false);
+        cierreTextField.setEditable(false);
 
     }
 
@@ -55,12 +63,16 @@ public class PistaController {
         titleTextField.setEditable(true);
         priceTextField.setEditable(true);
         descriptionTextField.setEditable(true);
+        aperturaField.setEditable(true);
+        cierreTextField.setEditable(true);
     }
 
     public void clearTextFields() {
         titleTextField.clear();
         priceTextField.clear();
         descriptionTextField.clear();
+        aperturaField.clear();
+        cierreTextField.clear();
     }
 
 
@@ -86,5 +98,21 @@ public class PistaController {
 
     public void setTitleTextField(TextField titleTextField) {
         this.titleTextField = titleTextField;
+    }
+
+    public TextField getAperturaField() {
+        return aperturaField;
+    }
+
+    public void setAperturaField(TextField aperturaField) {
+        this.aperturaField = aperturaField;
+    }
+
+    public TextField getCierreTextField() {
+        return cierreTextField;
+    }
+
+    public void setCierreTextField(TextField cierreTextField) {
+        this.cierreTextField = cierreTextField;
     }
 }

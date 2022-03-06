@@ -24,7 +24,15 @@ public class ReservaController implements Initializable {
     private DatePicker dateField;
 
     @FXML
-    private TextArea descriptionTextArea;
+    private TextField pistaTextField;
+
+    @FXML
+    private TextField inicioTextField;
+
+    @FXML
+    private TextField finTextField;
+
+
 
     @FXML
     private HBox hboxReserva;
@@ -61,24 +69,29 @@ public class ReservaController implements Initializable {
         sportTypeSelector.setDisable(true);
         sportTypeSelector.setOpacity(100);
         priceTextField.setEditable(false);
-        descriptionTextArea.setEditable(false);
         clientNameTextField.setEditable(false);
+        pistaTextField.setEditable(false);
+        inicioTextField.setEditable(false);
+        finTextField.setEditable(false);
 
     }
 
     public void unlockTextFields() {
         sportTypeSelector.setDisable(false);
         priceTextField.setEditable(true);
-        descriptionTextArea.setEditable(true);
-        descriptionTextArea.setStyle(null);
         clientNameTextField.setEditable(true);
+        pistaTextField.setEditable(false);
+        inicioTextField.setEditable(false);
+        finTextField.setEditable(false);
     }
 
     public void clearTextFields() {
         sportTypeSelector.setValue("");
         priceTextField.clear();
-        descriptionTextArea.clear();
         clientNameTextField.clear();
+        pistaTextField.clear();
+        inicioTextField.clear();
+        finTextField.clear();
     }
 
     @Override
@@ -93,14 +106,6 @@ public class ReservaController implements Initializable {
 
     public void setClientNameTextField(TextField clientNameTextField) {
         this.clientNameTextField = clientNameTextField;
-    }
-
-    public TextArea getDescriptionTextArea() {
-        return descriptionTextArea;
-    }
-
-    public void setDescriptionTextArea(TextArea descriptionTextArea) {
-        this.descriptionTextArea = descriptionTextArea;
     }
 
     public TextField getPriceTextField() {
@@ -125,5 +130,29 @@ public class ReservaController implements Initializable {
 
     public void setDateField(DatePicker dateField) {
         this.dateField = dateField;
+    }
+
+    public TextField getPistaTextField() {
+        return pistaTextField;
+    }
+
+    public void setPistaTextField(TextField pistaTextField) {
+        this.pistaTextField = pistaTextField;
+    }
+
+    public TextField getInicioTextField() {
+        return inicioTextField;
+    }
+
+    public void setInicioTextField(TextField inicioTextField) {
+        this.inicioTextField = inicioTextField;
+    }
+
+    public TextField getFinTextField() {
+        return finTextField;
+    }
+
+    public void setFinTextField(TextField finTextField) {
+        this.finTextField = finTextField;
     }
 }

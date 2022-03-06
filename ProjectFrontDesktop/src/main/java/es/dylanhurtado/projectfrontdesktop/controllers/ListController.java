@@ -86,8 +86,8 @@ public class ListController implements Initializable {
         pistaObservableList = FXCollections.observableArrayList();
         reservaObservableList = FXCollections.observableArrayList();
         usuariosObservableList = FXCollections.observableArrayList();
-        pistaObservableList.addAll(new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd"), new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd"), new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd"));
-        reservaObservableList.addAll(new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "dsf"), new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "sdkfjs"), new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "sifdfj"));
+        pistaObservableList.addAll(new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd",1,1), new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd",1,1), new Pista(UUID.randomUUID(), "fsdf", "fdsf", 123d, "dfsd",1,1));
+        reservaObservableList.addAll(new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "dsf",1,1), new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "sdkfjs",1,1), new Reserva(UUID.randomUUID(), "fsdf", "fdsf", 222d, "dfsd", LocalDate.now(), "sifdfj",1,1));
         usuariosObservableList.addAll(new User(UUID.randomUUID(), "", "", "", ""), new User(UUID.randomUUID(), "", "", "", ""), new User(UUID.randomUUID(), "", "", "", ""));
         listView.setItems(FXCollections.observableArrayList((Object) pistaObservableList));
 
@@ -119,9 +119,11 @@ public class ListController implements Initializable {
     private void setTextFieldsReserva() {
         reservaController.getSportTypeSelector().setValue(reservaController.getSelectedItem().getSportType());
         reservaController.getPriceTextField().setText(reservaController.getSelectedItem().getPrice().toString());
-        reservaController.getDescriptionTextArea().setText(reservaController.getSelectedItem().getDescription());
+        reservaController.getPistaTextField().setText(reservaController.getSelectedItem().getPista().getTitle());
         reservaController.getClientNameTextField().setText(reservaController.getSelectedItem().getUsername());
         reservaController.getDateField().setValue(reservaController.getSelectedItem().getDate());
+        reservaController.getInicioTextField().setText(String.valueOf(reservaController.getSelectedItem().getInicio()));
+        reservaController.getFinTextField().setText(String.valueOf(reservaController.getSelectedItem().getFin()));
         reservaController.blockTextFields();
     }
 
@@ -135,7 +137,9 @@ public class ListController implements Initializable {
                 reservaController.getSelectedItem().setPrice(Double.valueOf(reservaController.getPriceTextField().getText()));
                 reservaController.getSelectedItem().setUsername(reservaController.getClientNameTextField().getText());
                 reservaController.getSelectedItem().setDate(reservaController.getDateField().getValue());
-                reservaController.getSelectedItem().setDescription(reservaController.getDescriptionTextArea().getText());
+                reservaController.getSelectedItem().setPista(new Pista(reservaController.getPistaTextField().getText()));
+                reservaController.getSelectedItem().setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
+                reservaController.getSelectedItem().setFin(Integer.parseInt(reservaController.getFinTextField().getText()));
                 editButton.setVisible(true);
                 reservaController.blockTextFields();
                 saveButton.setVisible(false);
@@ -171,7 +175,9 @@ public class ListController implements Initializable {
                         Double.valueOf(reservaController.getPriceTextField().getText()),
                         reservaController.getClientNameTextField().getText(),
                         reservaController.getDateField().getValue(),
-                        reservaController.getDescriptionTextArea().getText()));
+                        reservaController.getPistaTextField().getText(),
+                        Integer.parseInt(reservaController.getInicioTextField().getText()),
+                        Integer.parseInt(reservaController.getFinTextField().getText())));
 
                 editButton.setVisible(true);
                 deleteButton.setVisible(true);
@@ -186,6 +192,8 @@ public class ListController implements Initializable {
         pistaController.getTitleTextField().setText(pistaController.getSelectedItem().getTitle());
         pistaController.getPriceTextField().setText(pistaController.getSelectedItem().getPrice().toString());
         pistaController.getDescriptionTextField().setText(pistaController.getSelectedItem().getDescription());
+        pistaController.getAperturaField().setText(String.valueOf(pistaController.getSelectedItem().getApertura()));
+        pistaController.getCierreTextField().setText(String.valueOf(pistaController.getSelectedItem().getCierre()));
         pistaController.blockTextFields();
     }
 
@@ -246,7 +254,9 @@ public class ListController implements Initializable {
                         "",
                         pistaController.getTitleTextField().getText(),
                         Double.valueOf(pistaController.getPriceTextField().getText()),
-                        pistaController.getDescriptionTextField().getText()));
+                        pistaController.getDescriptionTextField().getText(),
+                        Integer.parseInt(pistaController.getAperturaField().getText()),
+                        Integer.parseInt(pistaController.getCierreTextField().getText())));
 
                 editButton.setVisible(true);
                 deleteButton.setVisible(true);

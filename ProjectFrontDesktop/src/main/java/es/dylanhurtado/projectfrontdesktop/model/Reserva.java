@@ -9,19 +9,23 @@ public class Reserva {
     private Double price;
     private String username;
     private String sportType;
+    private Pista pista;
+    private int inicio;
+    private int fin;
     private LocalDate date;
-    private String description;
 
     public Reserva() {
     }
 
-    public Reserva(UUID id, String image, String sportType, Double price, String username, LocalDate date, String description) {
+    public Reserva(UUID id, String image, String sportType, Double price, String username, LocalDate date,String pista,int inicio,int fin) {
         this.id = id;
         this.image = image;
         this.price = price;
         this.sportType = sportType;
         this.username = username;
-        this.description = description;
+        this.pista = new Pista(pista);
+        this.inicio = inicio;
+        this.fin = fin;
         this.date = date;
     }
 
@@ -70,19 +74,35 @@ public class Reserva {
         this.date = date;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getSportType() {
         return sportType;
     }
 
     public void setSportType(String sportType) {
         this.sportType = sportType;
+    }
+
+    public Pista getPista() {
+        return pista;
+    }
+
+    public void setPista(Pista pista) {
+        this.pista = pista;
+    }
+
+    public int getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(int inicio) {
+        this.inicio = inicio;
+    }
+
+    public int getFin() {
+        return fin;
+    }
+
+    public void setFin(int fin) {
+        this.fin = fin;
     }
 }
