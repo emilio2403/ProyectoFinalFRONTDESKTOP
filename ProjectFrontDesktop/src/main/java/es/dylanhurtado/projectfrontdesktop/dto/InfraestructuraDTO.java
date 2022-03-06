@@ -11,8 +11,6 @@ public class InfraestructuraDTO {
     private String foto;
     private LocalDateTime apertura;
     private LocalDateTime cierre;
-    private String descripcion;
-    private Double price;
 
 
     public InfraestructuraDTO() {
@@ -25,8 +23,6 @@ public class InfraestructuraDTO {
         this.foto = foto;
         this.apertura = apertura;
         this.cierre = cierre;
-        this.descripcion = descripcion;
-        this.price = price;
     }
 
     public UUID getId() {
@@ -75,21 +71,5 @@ public class InfraestructuraDTO {
 
     public void setCierre(LocalDateTime cierre) {
         this.cierre = cierre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 }

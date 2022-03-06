@@ -15,6 +15,7 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -347,6 +348,18 @@ public class ListController implements Initializable {
         this.usuariosRef = usuariosRef;
     }
 
+    public void addReservastoList(List<Reserva> reservas){
+        reservaObservableList.clear();
+        reservaObservableList.addAll(reservas);
+    }
+    public void addPistastoList(List<Pista> pistas){
+        pistaObservableList.clear();
+        pistaObservableList.addAll(pistas);
+    }
+    public void addUserstoList(List<User> users){
+        usuariosObservableList.clear();
+        usuariosObservableList.addAll(users);
+    }
 
     public ListView<Object> getListView() {
         return listView;
@@ -374,6 +387,10 @@ public class ListController implements Initializable {
 
     public Label getTypeLabel() {
         return typeLabel;
+    }
+
+    public String getSportType() {
+        return sportType;
     }
 
     public Button getAddButton() {

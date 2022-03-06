@@ -1,7 +1,8 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
-import es.dylanhurtado.projectfrontdesktop.dto.AdminDTO;
+import es.dylanhurtado.projectfrontdesktop.dto.ClienteDTO;
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
+import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
 import es.dylanhurtado.projectfrontdesktop.rest.Config;
 import es.dylanhurtado.projectfrontdesktop.rest.RestOperations;
 import javafx.animation.TranslateTransition;
@@ -9,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -158,12 +160,15 @@ public class MainController implements Initializable {
     @FXML
     private LoginController loginController;
 
+    private Mapper mapper;
+
     private TranslateTransition loginAnimation, listAnimation;
     private RestOperations restOperations;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        mapper=new Mapper();
         restOperations = Config.getService();
         messageWrapper.setVisible(true);
         graficoController.hideVistaGraficos();
@@ -185,32 +190,80 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void showListReservas() {
+    private void showListReservas() throws IOException {
         listController.getListView().setItems(mapToObject(listController.getReservaObservableList()));
         listController.setReservasRef(true);
         listController.getTypeLabel().setText("Reservas");
         listController.onActionReservaAdd();
         showList();
+        getReservasAPI();
+
+    }
+    private void getReservasAPI() throws IOException {
+        Response<List<InfraestructuraDTO>> infraestructuraResponse = restOperations.infraestructuraByTipo(listController.getSportType()).execute();
+        if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
+            List<InfraestructuraDTO> infraestructurasDTO = infraestructuraResponse.body();
+            if (infraestructurasDTO != null) {
+                listController.addReservastoList(mapper.toReserva(infraestructurasDTO));
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error 404");
+                alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                alert.show();
+            }
+        }
     }
 
     @FXML
-    private void showListPistas() {
+    private void showListPistas() throws IOException {
         listController.getListView().setItems(mapToObject(listController.getPistaObservableList()));
         listController.setPistasRef(true);
         listController.getTypeLabel().setText("Pistas");
         listController.onActionPistaAdd();
         showList();
+        getPistasAPI();
+    }
+
+    private void getPistasAPI() throws IOException {
+        Response<List<InfraestructuraDTO>> infraestructuraResponse = restOperations.infraestructuraByTipo(listController.getSportType()).execute();
+        if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
+            List<InfraestructuraDTO> infraestructurasDTO = infraestructuraResponse.body();
+            if (infraestructurasDTO != null) {
+                listController.addPistastoList(mapper.toPista(infraestructurasDTO));
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error 404");
+                alert.setHeaderText("Llamada a la api fallida al cargar las pistas");
+                alert.show();
+            }
+        }
     }
 
     @FXML
-    private void showListUsuarios() {
+    private void showListUsuarios() throws IOException {
         listController.getListView().setItems(mapToObject(listController.getUsuariosObservableList()));
         listController.setUsuariosRef(true);
         listController.getTypeLabel().setText("Usuarios");
         listController.onActionUserAdd();
         showList();
+        getUsersAPI();
     }
 
+    private void getUsersAPI() throws IOException {
+        Response<List<ClienteDTO>> clientResponse = restOperations.getClientes().execute();
+        if (clientResponse.isSuccessful() && clientResponse.code() == 200) {
+            List<ClienteDTO> clientes = clientResponse.body();
+            if (clientes != null) {
+                listController.addUserstoList(mapper.toUser(clientes));
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error 404");
+                alert.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                alert.show();
+            }
+        }
+
+    }
     @FXML
     private void showGraficos() {
         TranslateTransition animation = new TranslateTransition(Duration.millis(600), grafico);
@@ -282,29 +335,21 @@ public class MainController implements Initializable {
         vboxPistas.setVisible(true);
         vboxReservas.setVisible(true);
         vboxGraficos.setVisible(true);
-        Response<InfraestructuraDTO> infraestructuraResponse=null;
         if (tenis.isFocused()) {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("TENIS").execute();
-            listController.setSportType("tenis");
-            if (infraestructuraResponse.isSuccessful() && infraestructuraResponse.code() == 200) {
-                
-            }
+            listController.setSportType("TENIS");
         } else if (baloncesto.isFocused()) {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("BALONCESTO").execute();
-            listController.setSportType("baloncesto");
+            listController.setSportType("BALONCESTO");
         } else if (padel.isFocused()) {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("PADEL").execute();
-            listController.setSportType("padel");
+            listController.setSportType("PADEL");
         } else if (futbol.isFocused()) {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("FUTBOL").execute();
-            listController.setSportType("futbol");
+            listController.setSportType("FUTBOL");
         } else if (rugby.isFocused()) {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("RUGBY").execute();
-            listController.setSportType("rugby");
+            listController.setSportType("RUGBY");
         } else {
-            infraestructuraResponse = restOperations.infraestructuraByTipo("VOLLEY").execute();
-            listController.setSportType("volleyball");
+            listController.setSportType("VOLLEY");
         }
+        getReservasAPI();
+        getPistasAPI();
     }
 
 }

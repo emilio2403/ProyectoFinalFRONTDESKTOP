@@ -6,9 +6,9 @@ import java.util.UUID;
 public class Reserva {
     private UUID id;
     private String image;
-    private String sportType;
     private Double price;
     private String username;
+    private String sportType;
     private LocalDate date;
     private String description;
 
@@ -18,8 +18,8 @@ public class Reserva {
     public Reserva(UUID id, String image, String sportType, Double price, String username, LocalDate date, String description) {
         this.id = id;
         this.image = image;
-        this.sportType = sportType;
         this.price = price;
+        this.sportType = sportType;
         this.username = username;
         this.description = description;
         this.date = date;
@@ -44,14 +44,6 @@ public class Reserva {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getSportType() {
-        return sportType;
-    }
-
-    public void setSportType(String type) {
-        this.sportType = type;
     }
 
     public Double getPrice() {
@@ -84,5 +76,13 @@ public class Reserva {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSportType() {
+        return sportType;
+    }
+
+    public void setSportType(String sportType) {
+        this.sportType = sportType;
     }
 }
