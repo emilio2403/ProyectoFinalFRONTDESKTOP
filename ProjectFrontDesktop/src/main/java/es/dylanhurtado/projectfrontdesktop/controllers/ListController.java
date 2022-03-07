@@ -247,13 +247,10 @@ public class ListController implements Initializable {
                         alquiler.setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
                         alquiler.setFin(Integer.parseInt(reservaController.getFinTextField().getText()));
                         infraestructuraDTOS.get(cont).getAlquileres().add(alquiler);
-                        System.out.println(infraestructuraDTOS.get(cont).getAlquileres().size());
                         try {
                             Response response=restOperations.infraestructuraUpdate(infraestructuraDTOS.get(cont)).execute();
-                            System.out.println(response.code());
                             if(response.isSuccessful()&&response.code()==200){
-                                //alquiler.setInfraestructura(infraestructuraDTOS.get(cont));
-                                reservaObservableList.add(mapper.toReserva(alquiler));
+                                reservaObservableList.add(mapper.toReservaApi(alquiler));
                                 editButton.setVisible(true);
                                 deleteButton.setVisible(true);
                                 pistaController.blockTextFields();

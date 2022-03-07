@@ -63,4 +63,14 @@ public class Mapper {
         reserva.setFin(item.getFin());
         return reserva;
     }
+    public Reserva toReservaApi(AlquilerDTO item) {
+        Reserva reserva = new Reserva();
+        reserva.setId(item.getId());
+        reserva.setImage("");
+        reserva.setPrice(item.getCoste());
+        reserva.setDate(LocalDate.of(item.getYear(),item.getMonth(),item.getDay()));
+        reserva.setInicio(item.getInicio());
+        reserva.setFin(item.getFin());
+        return reserva;
+    }
 }
