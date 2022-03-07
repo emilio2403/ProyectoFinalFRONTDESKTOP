@@ -16,7 +16,7 @@ public class InfraestructuraDTO {
 
 
     public InfraestructuraDTO() {
-        id=UUID.randomUUID();
+
     }
 
     public InfraestructuraDTO(List<AlquilerDTO> alquileres, String nombre, String tipo, String foto, int apertura, int cierre, double coste, String descripcion) {
