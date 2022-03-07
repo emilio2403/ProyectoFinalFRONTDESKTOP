@@ -217,10 +217,16 @@ public class ListController implements Initializable {
                         encontrado=false;
                         try {
                             Response<InfraestructuraDTO> updateResponse = restOperations.infraestructuraUpdate(infraestructuraDTOS.get(cont)).execute();
-                            //falta implementar
                             if(updateResponse.isSuccessful()&&updateResponse.code()==200){
                                 showHome();
-                                pistaObservableList.remove(pistaController.getSelectedItem());
+                                pistaController.getSelectedItem().setTitle(pistaController.getTitleTextField().getText());
+                                pistaController.getSelectedItem().setPrice(Double.valueOf(pistaController.getPriceTextField().getText()));
+                                pistaController.getSelectedItem().setDescription(pistaController.getDescriptionTextField().getText());
+                                pistaController.getSelectedItem().setApertura(Integer.parseInt(pistaController.getAperturaField().getText()));
+                                pistaController.getSelectedItem().setCierre(Integer.parseInt(pistaController.getCierreTextField().getText()));
+                                editButton.setVisible(true);
+                                pistaController.blockTextFields();
+                                saveButton.setVisible(false);
                             }else{
                                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                                 alert1.setTitle("Error 404");
@@ -235,13 +241,6 @@ public class ListController implements Initializable {
                         }
                     }
                 }
-
-                pistaController.getSelectedItem().setTitle(pistaController.getTitleTextField().getText());
-                pistaController.getSelectedItem().setPrice(Double.valueOf(pistaController.getPriceTextField().getText()));
-                pistaController.getSelectedItem().setDescription(pistaController.getDescriptionTextField().getText());
-                editButton.setVisible(true);
-                pistaController.blockTextFields();
-                saveButton.setVisible(false);
             });
         });
     }
