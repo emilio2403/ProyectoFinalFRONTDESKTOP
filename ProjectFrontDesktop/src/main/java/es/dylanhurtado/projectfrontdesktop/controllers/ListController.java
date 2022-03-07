@@ -163,6 +163,23 @@ public class ListController implements Initializable {
             alert.setContentText("Estas seguro/a ?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
+                try {
+                    Response response=restOperations.alquilerDelete(reservaController.getSelectedItem().getId()).execute();
+                    if(response.isSuccessful()&&response.code()==204){
+                        showHome();
+                        pistaObservableList.remove(pistaController.getSelectedItem());
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                    alert2.show();
+                }
                 showHome();
                 reservaObservableList.remove(reservaController.getSelectedItem());
             }
