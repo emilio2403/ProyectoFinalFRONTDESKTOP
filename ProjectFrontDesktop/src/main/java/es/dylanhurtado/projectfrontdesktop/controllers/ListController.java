@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import es.dylanhurtado.projectfrontdesktop.dto.ClienteDTO;
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
 import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
 
@@ -85,6 +86,7 @@ public class ListController implements Initializable {
     private Mapper mapper;
 
     private List<InfraestructuraDTO> infraestructuraDTOS;
+    private List<ClienteDTO> clienteDTOS;
 
 
 
@@ -189,7 +191,9 @@ public class ListController implements Initializable {
     public void onActionReservaAdd() {
         addButton.setOnAction(actionEvent -> {
             showPreview(reserva);
+            reservaController.getClientNameTextField().setText("Admin");
             reservaController.unlockTextFields();
+            reservaController.getClientNameTextField().setEditable(false);
             editButton.setVisible(false);
             deleteButton.setVisible(false);
             saveButton.setVisible(true);
@@ -230,7 +234,7 @@ public class ListController implements Initializable {
             saveButton.setOnAction(actionEvent1 -> {
                 boolean encontrado = true;
                 int cont=0;
-                while (cont<infraestructuraDTOS.size() || encontrado){
+                while (cont<infraestructuraDTOS.size() && encontrado){
                     if(infraestructuraDTOS.get(cont).getId()==pistaController.getSelectedItem().getId()){
                         infraestructuraDTOS.get(cont).setNombre(pistaController.getTitleTextField().getText());
                         infraestructuraDTOS.get(cont).setApertura(Integer.parseInt(pistaController.getAperturaField().getText()));
@@ -341,7 +345,6 @@ public class ListController implements Initializable {
     private void setTextFieldsUser() {
         userController.getUserTextField().setText(userController.getSelectedItem().getUsername());
         userController.getEmailTextField().setText(userController.getSelectedItem().getEmail());
-        userController.getDescriptionTextArea().setText(userController.getSelectedItem().getDescription());
         userController.blockTextFields();
     }
 
@@ -351,12 +354,38 @@ public class ListController implements Initializable {
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                userController.getSelectedItem().setUsername(userController.getUserTextField().getText());
-                userController.getSelectedItem().setEmail(userController.getEmailTextField().getText());
-                userController.getSelectedItem().setDescription(userController.getDescriptionTextArea().getText());
-                editButton.setVisible(true);
-                pistaController.blockTextFields();
-                saveButton.setVisible(false);
+
+                boolean encontrado = true;
+                int cont=0;
+                while (cont<clienteDTOS.size() && encontrado){
+                    if(clienteDTOS.get(cont).getId()==userController.getSelectedItem().getId()){
+                        clienteDTOS.get(cont).setCorreo(userController.getEmailTextField().getText());
+                        clienteDTOS.get(cont).setNombre(userController.getUserTextField().getText());
+                        encontrado=false;
+                        try {
+                            Response<ClienteDTO> updateResponse = restOperations.clienteUpdate(clienteDTOS.get(cont)).execute();
+                            if(updateResponse.isSuccessful()&&updateResponse.code()==200){
+                                userController.getSelectedItem().setUsername(userController.getUserTextField().getText());
+                                userController.getSelectedItem().setEmail(userController.getEmailTextField().getText());
+                                editButton.setVisible(true);
+                                pistaController.blockTextFields();
+                                saveButton.setVisible(false);
+                                showHome();
+                            }else{
+                                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                                alert1.setTitle("Error 404");
+                                alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                                alert1.show();
+                            }
+                        } catch (IOException e) {
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Error 404");
+                            alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                            alert1.show();
+                        }
+                    }
+                    cont++;
+                }
             });
         });
     }
@@ -369,9 +398,23 @@ public class ListController implements Initializable {
             alert.setContentText("Estas seguro/a ?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
-
-                showHome();
-                usuariosObservableList.remove(userController.getSelectedItem());
+                try {
+                    Response response=restOperations.clienteDelete(userController.getSelectedItem().getId()).execute();
+                    if(response.isSuccessful()&&response.code()==204){
+                        showHome();
+                        usuariosObservableList.remove(userController.getSelectedItem());
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                    alert2.show();
+                }
             }
         });
     }
@@ -384,17 +427,35 @@ public class ListController implements Initializable {
             deleteButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                usuariosObservableList.add(new User(UUID.randomUUID(),
-                        "",
-                        userController.getUserTextField().getText(),
-                        userController.getEmailTextField().getText(),
-                        userController.getDescriptionTextArea().getText()));
 
-                editButton.setVisible(true);
-                deleteButton.setVisible(true);
-                userController.blockTextFields();
-                saveButton.setVisible(false);
-                showHome();
+                ClienteDTO clienteDTO=
+                        new ClienteDTO(UUID.randomUUID(),
+                                userController.getUserTextField().getText(),
+                                userController.getEmailTextField().getText(),
+                                "password",
+                                "",
+                                new ArrayList<>());
+                try {
+                    Response response=restOperations.clientePost(clienteDTO).execute();
+                    if(response.isSuccessful()&&response.code()==201){
+                        usuariosObservableList.add(mapper.toUser((ClienteDTO) response.body()));
+                        editButton.setVisible(true);
+                        deleteButton.setVisible(true);
+                        userController.blockTextFields();
+                        saveButton.setVisible(false);
+                        showHome();
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al guardar pista1");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al guardar pista2");
+                    alert2.show();
+                }
             });
         });
     }
@@ -510,6 +571,13 @@ public class ListController implements Initializable {
 
     public void setInfraestructuraDTOS(List<InfraestructuraDTO> infraestructuraDTOS) {
         this.infraestructuraDTOS = infraestructuraDTOS;
+    }
+    public List<ClienteDTO> getClienteDTOS() {
+        return clienteDTOS;
+    }
+
+    public void setClienteDTOS(List<ClienteDTO> clienteDTOS) {
+        this.clienteDTOS = clienteDTOS;
     }
 }
 

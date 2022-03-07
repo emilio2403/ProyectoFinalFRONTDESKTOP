@@ -237,6 +237,7 @@ public class MainController implements Initializable {
         if (clientResponse.isSuccessful() && clientResponse.code() == 200) {
             List<ClienteDTO> clientes = clientResponse.body();
             listController.addUserstoList(mapper.toUser(clientes));
+            listController.setClienteDTOS(clientes);
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error 404");
