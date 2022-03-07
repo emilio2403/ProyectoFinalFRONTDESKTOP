@@ -76,10 +76,10 @@ public class ReservaController implements Initializable {
 
     public void unlockTextFields() {
         priceTextField.setEditable(true);
-        clientNameTextField.setEditable(true);
-        pistaTextField.setEditable(false);
-        inicioTextField.setEditable(false);
-        finTextField.setEditable(false);
+        clientNameTextField.setEditable(false);
+        pistaTextField.setEditable(true);
+        inicioTextField.setEditable(true);
+        finTextField.setEditable(true);
     }
 
     public void clearTextFields() {

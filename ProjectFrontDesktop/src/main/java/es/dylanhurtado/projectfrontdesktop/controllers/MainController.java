@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import es.dylanhurtado.projectfrontdesktop.dto.AlquilerDTO;
 import es.dylanhurtado.projectfrontdesktop.dto.ClienteDTO;
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
 import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
@@ -25,6 +26,7 @@ import retrofit2.Response;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -205,6 +207,9 @@ public class MainController implements Initializable {
             listController.addReservastoList(mapper.toReserva(infraestructurasDTO));
             listController.addPistastoList(mapper.toPista(infraestructurasDTO));
             listController.setInfraestructuraDTOS(infraestructurasDTO);
+            List<AlquilerDTO> alquileres=new ArrayList();
+            infraestructurasDTO.forEach(i->i.getAlquileres().forEach(a->alquileres.add(a)));
+            listController.setAlquileresDTOS(alquileres);
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error 404");

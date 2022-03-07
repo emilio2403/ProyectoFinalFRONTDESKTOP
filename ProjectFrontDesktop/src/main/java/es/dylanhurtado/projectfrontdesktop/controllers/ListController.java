@@ -1,5 +1,6 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
+import es.dylanhurtado.projectfrontdesktop.dto.AlquilerDTO;
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
 import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
 
@@ -85,6 +86,7 @@ public class ListController implements Initializable {
     private Mapper mapper;
 
     private List<InfraestructuraDTO> infraestructuraDTOS;
+    private List<AlquilerDTO> alquileresDTOS;
 
 
 
@@ -142,6 +144,43 @@ public class ListController implements Initializable {
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
+                boolean encontrado = true;
+                int cont=0;
+                while (cont<alquileresDTOS.size() || encontrado){
+                    if(alquileresDTOS.get(cont).getId()==reservaController.getSelectedItem().getId()){
+                        alquileresDTOS.get(cont).setCoste(Double.parseDouble(reservaController.getPriceTextField().getText()));
+                        alquileresDTOS.get(cont).setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
+                        alquileresDTOS.get(cont).setFin(Integer.parseInt(reservaController.getFinTextField().getText())+1);
+                        alquileresDTOS.get(cont).setDay(reservaController.getDateField().getValue().getDayOfMonth());
+                        alquileresDTOS.get(cont).setMonth(reservaController.getDateField().getValue().getMonth().getValue());
+                        alquileresDTOS.get(cont).setYear(reservaController.getDateField().getValue().getYear());
+                        encontrado=false;
+                        try {
+                            Response<AlquilerDTO> updateResponse = restOperations.alquilerUpdate(alquileresDTOS.get(cont)).execute();
+                            if(updateResponse.isSuccessful()&&updateResponse.code()==200){
+                                reservaController.getSelectedItem().setPrice(Double.parseDouble(reservaController.getPriceTextField().getText()));
+                                reservaController.getSelectedItem().setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
+                                reservaController.getSelectedItem().setFin(Integer.parseInt(reservaController.getFinTextField().getText()));
+                                reservaController.getSelectedItem().setDate(reservaController.getDateField().getValue());
+                                editButton.setVisible(true);
+                                pistaController.blockTextFields();
+                                saveButton.setVisible(false);
+                                showHome();
+                            }else{
+                                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                                alert1.setTitle("Error 404");
+                                alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                                alert1.show();
+                            }
+                        } catch (IOException e) {
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Error 404");
+                            alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                            alert1.show();
+                        }
+                    }
+                    cont++;
+                }
                 reservaController.getSelectedItem().setPrice(Double.valueOf(reservaController.getPriceTextField().getText()));
                 reservaController.getSelectedItem().setUsername(reservaController.getClientNameTextField().getText());
                 reservaController.getSelectedItem().setDate(reservaController.getDateField().getValue());
@@ -194,21 +233,51 @@ public class ListController implements Initializable {
             deleteButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                reservaObservableList.add(new Reserva(UUID.randomUUID(),
-                        "",
-                        reservaController.getSportTypeSelector().getValue(),
-                        Double.valueOf(reservaController.getPriceTextField().getText()),
-                        reservaController.getClientNameTextField().getText(),
-                        reservaController.getDateField().getValue(),
-                        reservaController.getPistaTextField().getText(),
-                        Integer.parseInt(reservaController.getInicioTextField().getText()),
-                        Integer.parseInt(reservaController.getFinTextField().getText())));
-
-                editButton.setVisible(true);
-                deleteButton.setVisible(true);
-                reservaController.blockTextFields();
-                saveButton.setVisible(false);
-                showHome();
+                boolean encontrado=true;
+                int cont=0;
+                while(cont<infraestructuraDTOS.size()&&encontrado){
+                    if(infraestructuraDTOS.get(cont).getNombre().equals(reservaController.getPistaTextField().getText())){
+                        encontrado=false;
+                        AlquilerDTO alquiler=new AlquilerDTO();
+                        alquiler.setId(UUID.randomUUID());
+                        alquiler.setCoste(Double.parseDouble(reservaController.getPriceTextField().getText()));
+                        alquiler.setDay(reservaController.getDateField().getValue().getMonth().getValue());
+                        alquiler.setMonth(reservaController.getDateField().getValue().getMonth().getValue());
+                        alquiler.setYear(reservaController.getDateField().getValue().getYear());
+                        alquiler.setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
+                        alquiler.setFin(Integer.parseInt(reservaController.getFinTextField().getText()));
+                        alquiler.setInfraestructura(infraestructuraDTOS.get(cont));
+                        try {
+                            Response response=restOperations.alquilerPost(alquiler).execute();
+                            System.out.println(response.code());
+                            if(response.isSuccessful()&&response.code()==201){
+                                reservaObservableList.add(mapper.toReserva((AlquilerDTO) response.body()));
+                                editButton.setVisible(true);
+                                deleteButton.setVisible(true);
+                                pistaController.blockTextFields();
+                                saveButton.setVisible(false);
+                                showHome();
+                            }else{
+                                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                                alert1.setTitle("Error 404");
+                                alert1.setHeaderText("Llamada a la api fallida al guardar pista1");
+                                alert1.show();
+                            }
+                        } catch (IOException e) {
+                            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                            alert2.setTitle("Error 404");
+                            alert2.setHeaderText("Llamada a la api fallida al guardar pista2");
+                            alert2.show();
+                        }
+                    }
+                    cont++;
+                }
+                if(cont==infraestructuraDTOS.size()&&encontrado){
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Error 404");
+                    alert1.setHeaderText("Llamada a la api fallida al guardar pista3");
+                    alert1.show();
+                }
             });
         });
     }
@@ -510,6 +579,14 @@ public class ListController implements Initializable {
 
     public void setInfraestructuraDTOS(List<InfraestructuraDTO> infraestructuraDTOS) {
         this.infraestructuraDTOS = infraestructuraDTOS;
+    }
+
+    public List<AlquilerDTO> getAlquileresDTOS() {
+        return alquileresDTOS;
+    }
+
+    public void setAlquileresDTOS(List<AlquilerDTO> alquileresDTOS) {
+        this.alquileresDTOS = alquileresDTOS;
     }
 }
 
