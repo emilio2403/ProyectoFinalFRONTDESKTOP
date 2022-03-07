@@ -25,6 +25,7 @@ import retrofit2.Response;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -258,32 +259,16 @@ public class MainController implements Initializable {
     }
 
     private void conteoParaGrafico() {
-        int nTenis = 0, nBaloncesto = 0, nPadel = 0, nFutbol = 0, nRugby = 0, nVolleyball = 0;
-        Double totalTenis = 0.0, totalBaloncesto = 0.0, totalPadel = 0.0, totalFutbol = 0.0, totalRugby = 0.0, totalVolleyball = 0.0;
-        int size = listController.getReservaObservableList().size();
-        for (int i = 0; i < size; i++) {
-            if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("TENIS")) {
-                nTenis++;
-                totalTenis += listController.getReservaObservableList().get(i).getPrice();
-            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("BALONCESTO")) {
-                nBaloncesto++;
-                totalBaloncesto += listController.getReservaObservableList().get(i).getPrice();
-            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("PADEL")) {
-                nPadel++;
-                totalPadel += listController.getReservaObservableList().get(i).getPrice();
-            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("FUTBOL")) {
-                nFutbol++;
-                totalFutbol += listController.getReservaObservableList().get(i).getPrice();
-            } else if (listController.getReservaObservableList().get(i).getSportType().equalsIgnoreCase("RUGBY")) {
-                nRugby++;
-                totalBaloncesto += listController.getReservaObservableList().get(i).getPrice();
-            } else {
-                nVolleyball++;
-                totalVolleyball += listController.getReservaObservableList().get(i).getPrice();
-            }
+        int totalPrecio=0;
+        List<InfraestructuraDTO> listPista = listController.getInfraestructuraDTOS();
+        List<Integer> porcentajes = new ArrayList<>();
+        List<Integer> ganancias = new ArrayList<>();
+        for (int i = 0; i < listPista.size(); i++) {
+            porcentajes.add(listPista.get(i).getAlquileres().size());
+            totalPrecio += listPista.get(i).getAlquileres().stream().mapToInt(x -> (int) x.getCoste()).sum();
+            ganancias.add(totalPrecio);
         }
-        List<Integer> porcentajes = List.of(nTenis * 100 / size, nBaloncesto * 100 / size, nPadel * 100 / size, nFutbol * 100 / size, nRugby * 100 / size, nVolleyball * 100 / size);
-        List<Double> ganancias = List.of(totalTenis, totalBaloncesto, totalPadel, totalFutbol, totalRugby, totalVolleyball);
+
         graficoController.setPorcentajesCircular(porcentajes);
         graficoController.setDatosGraficosBarras(ganancias);
     }
