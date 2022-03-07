@@ -246,12 +246,14 @@ public class ListController implements Initializable {
                         alquiler.setYear(reservaController.getDateField().getValue().getYear());
                         alquiler.setInicio(Integer.parseInt(reservaController.getInicioTextField().getText()));
                         alquiler.setFin(Integer.parseInt(reservaController.getFinTextField().getText()));
-                        alquiler.setInfraestructura(infraestructuraDTOS.get(cont));
+                        infraestructuraDTOS.get(cont).getAlquileres().add(alquiler);
+                        System.out.println(infraestructuraDTOS.get(cont).getAlquileres().size());
                         try {
-                            Response response=restOperations.alquilerPost(alquiler).execute();
+                            Response response=restOperations.infraestructuraUpdate(infraestructuraDTOS.get(cont)).execute();
                             System.out.println(response.code());
-                            if(response.isSuccessful()&&response.code()==201){
-                                reservaObservableList.add(mapper.toReserva((AlquilerDTO) response.body()));
+                            if(response.isSuccessful()&&response.code()==200){
+                                //alquiler.setInfraestructura(infraestructuraDTOS.get(cont));
+                                reservaObservableList.add(mapper.toReserva(alquiler));
                                 editButton.setVisible(true);
                                 deleteButton.setVisible(true);
                                 pistaController.blockTextFields();
@@ -260,13 +262,13 @@ public class ListController implements Initializable {
                             }else{
                                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                                 alert1.setTitle("Error 404");
-                                alert1.setHeaderText("Llamada a la api fallida al guardar pista1");
+                                alert1.setHeaderText("Llamada a la api fallida al recibir info.");
                                 alert1.show();
                             }
                         } catch (IOException e) {
                             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                             alert2.setTitle("Error 404");
-                            alert2.setHeaderText("Llamada a la api fallida al guardar pista2");
+                            alert2.setHeaderText("Llamada a la api fallida.");
                             alert2.show();
                         }
                     }
@@ -275,7 +277,7 @@ public class ListController implements Initializable {
                 if(cont==infraestructuraDTOS.size()&&encontrado){
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                     alert1.setTitle("Error 404");
-                    alert1.setHeaderText("Llamada a la api fallida al guardar pista3");
+                    alert1.setHeaderText("Nombre de pista incorrecto.");
                     alert1.show();
                 }
             });
