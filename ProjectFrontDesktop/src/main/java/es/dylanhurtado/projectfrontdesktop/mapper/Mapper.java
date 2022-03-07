@@ -55,10 +55,18 @@ public class Mapper {
         Reserva reserva = new Reserva();
         reserva.setId(item.getId());
         reserva.setImage("");
-        reserva.setSportType(item.getInfraestructura().getTipo());
+        if(item.getInfraestructura()==null){
+            reserva.setSportType("");
+        }else{
+            reserva.setSportType(item.getInfraestructura().getTipo());
+        }
         reserva.setPrice(item.getCoste());
         reserva.setDate(LocalDate.of(item.getYear(),item.getMonth(),item.getDay()));
-        reserva.setPista(this.toPista(item.getInfraestructura()));
+        if(item.getInfraestructura()==null){
+            reserva.setPista(new Pista());
+        }else{
+            reserva.setPista(this.toPista(item.getInfraestructura()));
+        }
         reserva.setInicio(item.getInicio());
         reserva.setFin(item.getFin());
         return reserva;
