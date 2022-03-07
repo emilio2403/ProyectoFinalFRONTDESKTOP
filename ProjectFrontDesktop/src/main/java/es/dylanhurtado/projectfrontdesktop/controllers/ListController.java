@@ -163,6 +163,23 @@ public class ListController implements Initializable {
             alert.setContentText("Estas seguro/a ?");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.OK) {
+                try {
+                    Response response=restOperations.alquilerDelete(reservaController.getSelectedItem().getId()).execute();
+                    if(response.isSuccessful()&&response.code()==204){
+                        showHome();
+                        pistaObservableList.remove(pistaController.getSelectedItem());
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                    alert2.show();
+                }
                 showHome();
                 reservaObservableList.remove(reservaController.getSelectedItem());
             }
@@ -225,15 +242,15 @@ public class ListController implements Initializable {
                         try {
                             Response<InfraestructuraDTO> updateResponse = restOperations.infraestructuraUpdate(infraestructuraDTOS.get(cont)).execute();
                             if(updateResponse.isSuccessful()&&updateResponse.code()==200){
-                                showHome();
                                 pistaController.getSelectedItem().setTitle(pistaController.getTitleTextField().getText());
-                                pistaController.getSelectedItem().setPrice(Double.valueOf(pistaController.getPriceTextField().getText()));
+                                pistaController.getSelectedItem().setPrice(Double.parseDouble(pistaController.getPriceTextField().getText()));
                                 pistaController.getSelectedItem().setDescription(pistaController.getDescriptionTextField().getText());
                                 pistaController.getSelectedItem().setApertura(Integer.parseInt(pistaController.getAperturaField().getText()));
                                 pistaController.getSelectedItem().setCierre(Integer.parseInt(pistaController.getCierreTextField().getText()));
                                 editButton.setVisible(true);
                                 pistaController.blockTextFields();
                                 saveButton.setVisible(false);
+                                showHome();
                             }else{
                                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                                 alert1.setTitle("Error 404");
@@ -247,6 +264,7 @@ public class ListController implements Initializable {
                             alert1.show();
                         }
                     }
+                    cont++;
                 }
             });
         });
@@ -297,7 +315,6 @@ public class ListController implements Initializable {
                                 pistaController.getDescriptionTextField().getText());
                 try {
                     Response response=restOperations.infraestructuraPost(infraestructuraDTO).execute();
-                    System.out.println(response.code());
                     if(response.isSuccessful()&&response.code()==201){
                         pistaObservableList.add(mapper.toPista((InfraestructuraDTO) response.body()));
                         editButton.setVisible(true);
