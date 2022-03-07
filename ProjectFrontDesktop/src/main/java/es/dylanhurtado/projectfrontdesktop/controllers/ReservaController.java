@@ -66,8 +66,6 @@ public class ReservaController implements Initializable {
     }
 
     public void blockTextFields() {
-        sportTypeSelector.setDisable(true);
-        sportTypeSelector.setOpacity(100);
         priceTextField.setEditable(false);
         clientNameTextField.setEditable(false);
         pistaTextField.setEditable(false);
@@ -77,7 +75,6 @@ public class ReservaController implements Initializable {
     }
 
     public void unlockTextFields() {
-        sportTypeSelector.setDisable(false);
         priceTextField.setEditable(true);
         clientNameTextField.setEditable(true);
         pistaTextField.setEditable(false);
@@ -86,7 +83,6 @@ public class ReservaController implements Initializable {
     }
 
     public void clearTextFields() {
-        sportTypeSelector.setValue("");
         priceTextField.clear();
         clientNameTextField.clear();
         pistaTextField.clear();

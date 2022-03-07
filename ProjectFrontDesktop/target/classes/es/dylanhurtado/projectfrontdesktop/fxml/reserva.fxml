@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,9 +17,9 @@
                <image>
                   <Image url="@../../../../img/reserva.jpg" />
                </image></ImageView>
-            <VBox fx:id="vboxForm" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+            <VBox fx:id="vboxForm" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
                <padding>
-                  <Insets bottom="50.0" left="25.0" right="50.0" top="50.0" />
+                  <Insets bottom="50.0" left="25.0" right="50.0" top="25.0" />
                </padding>
                <children>
                   <TextField fx:id="clientNameTextField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" promptText="%reservaclientname">
@@ -29,29 +27,46 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                      <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="pistaTextField" promptText="%reservapista">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+                     </padding>
+                  </TextField>
+                  <TextField fx:id="priceTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" promptText="%reservaprice">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <padding>
                         <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                      </padding>
                   </TextField>
-                  <TextField fx:id="priceTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" promptText="%reservaprice">
+                  <TextField fx:id="inicioTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" promptText="%reservainicio">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
                   </TextField>
-                  <ChoiceBox fx:id="sportTypeSelector" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0">
+                  <TextField fx:id="finTextField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="160.0" promptText="%reservafin">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="15.0" />
                      </VBox.margin>
-                  </ChoiceBox>
+                     <padding>
+                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                  </TextField>
                   <DatePicker fx:id="dateField" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" promptText="%reservadate" showWeekNumbers="true">
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </DatePicker>
-                  <TextArea fx:id="descriptionTextArea" prefHeight="200.0" prefWidth="200.0" promptText="%reservadescription" VBox.vgrow="SOMETIMES">
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </TextArea>
                </children>
             </VBox>
          </children>

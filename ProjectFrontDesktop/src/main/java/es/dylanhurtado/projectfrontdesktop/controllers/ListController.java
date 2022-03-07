@@ -117,7 +117,6 @@ public class ListController implements Initializable {
     }
 
     private void setTextFieldsReserva() {
-        reservaController.getSportTypeSelector().setValue(reservaController.getSelectedItem().getSportType());
         reservaController.getPriceTextField().setText(reservaController.getSelectedItem().getPrice().toString());
         reservaController.getPistaTextField().setText(reservaController.getSelectedItem().getPista().getTitle());
         reservaController.getClientNameTextField().setText(reservaController.getSelectedItem().getUsername());
@@ -133,7 +132,6 @@ public class ListController implements Initializable {
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                reservaController.getSelectedItem().setSportType(reservaController.getSportTypeSelector().getValue());
                 reservaController.getSelectedItem().setPrice(Double.valueOf(reservaController.getPriceTextField().getText()));
                 reservaController.getSelectedItem().setUsername(reservaController.getClientNameTextField().getText());
                 reservaController.getSelectedItem().setDate(reservaController.getDateField().getValue());
