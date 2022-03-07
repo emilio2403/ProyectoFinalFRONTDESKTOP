@@ -1,6 +1,8 @@
 package es.dylanhurtado.projectfrontdesktop.controllers;
 
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
+import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
+
 import es.dylanhurtado.projectfrontdesktop.model.Pista;
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import es.dylanhurtado.projectfrontdesktop.model.User;
@@ -20,6 +22,7 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -78,14 +81,18 @@ public class ListController implements Initializable {
     private String sportType;
 
     private RestOperations restOperations;
+  
+    private Mapper mapper;
 
     private List<InfraestructuraDTO> infraestructuraDTOS;
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showHome();
         restOperations= Config.getService();
+        mapper=new Mapper();
         pistaObservableList = FXCollections.observableArrayList();
         reservaObservableList = FXCollections.observableArrayList();
         usuariosObservableList = FXCollections.observableArrayList();
@@ -282,19 +289,34 @@ public class ListController implements Initializable {
             deleteButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                pistaObservableList.add(new Pista(UUID.randomUUID(),
-                        "",
-                        pistaController.getTitleTextField().getText(),
-                        Double.valueOf(pistaController.getPriceTextField().getText()),
-                        pistaController.getDescriptionTextField().getText(),
-                        Integer.parseInt(pistaController.getAperturaField().getText()),
-                        Integer.parseInt(pistaController.getCierreTextField().getText())));
-
-                editButton.setVisible(true);
-                deleteButton.setVisible(true);
-                pistaController.blockTextFields();
-                saveButton.setVisible(false);
-                showHome();
+                InfraestructuraDTO infraestructuraDTO=
+                        new InfraestructuraDTO(new ArrayList(), pistaController.getTitleTextField().getText(),
+                                sportType, "foto", Integer.parseInt(pistaController.getAperturaField().getText()),
+                                Integer.parseInt(pistaController.getCierreTextField().getText()),
+                                Double.parseDouble(pistaController.getPriceTextField().getText()),
+                                pistaController.getDescriptionTextField().getText());
+                try {
+                    Response response=restOperations.infraestructuraPost(infraestructuraDTO).execute();
+                    System.out.println(response.code());
+                    if(response.isSuccessful()&&response.code()==201){
+                        pistaObservableList.add(mapper.toPista((InfraestructuraDTO) response.body()));
+                        editButton.setVisible(true);
+                        deleteButton.setVisible(true);
+                        pistaController.blockTextFields();
+                        saveButton.setVisible(false);
+                        showHome();
+                    }else{
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle("Error 404");
+                        alert1.setHeaderText("Llamada a la api fallida al guardar pista1");
+                        alert1.show();
+                    }
+                } catch (IOException e) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Error 404");
+                    alert2.setHeaderText("Llamada a la api fallida al guardar pista2");
+                    alert2.show();
+                }
             });
         });
     }
