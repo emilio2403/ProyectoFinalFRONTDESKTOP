@@ -44,25 +44,25 @@ public class LoginController implements Initializable{
     @FXML
     private void login() throws IOException {
         if (!emailTextField.getText().equals("") && !passwordTextField.getText().equals("")) {
-            //Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
-            //if (loginResponse.isSuccessful() && loginResponse.code() == 200) {
+            Response loginResponse = restOperations.adminLogin(emailTextField.getText(), passwordTextField.getText()).execute();
+            if (loginResponse.isSuccessful() && loginResponse.code() == 200) {
                 //AdminDTO admin= (AdminDTO) loginResponse.body();
                 loginAnimation = new TranslateTransition(Duration.millis(600), login);
                 loginAnimation.setFromY(0);
                 loginAnimation.setToY(-3000);
                 loginAnimation.play();
-            /*}else{
+            }else{
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Changing the language");
-                alert.setHeaderText("Press on save and restart to save changes");
+                alert.setTitle("Inputs incorrectos");
+                alert.setHeaderText("El email o el password son incorrectos.");
                 alert.show();
             }
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Changing the language");
-            alert.setHeaderText("Press on save and restart to save changes");
+            alert.setTitle("Inputs vacios");
+            alert.setHeaderText("Los campos estan vacios.");
             alert.show();
-            */
+
         }
     }
 
