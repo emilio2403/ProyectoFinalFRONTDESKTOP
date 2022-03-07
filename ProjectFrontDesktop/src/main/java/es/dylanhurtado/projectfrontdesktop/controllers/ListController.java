@@ -2,6 +2,7 @@ package es.dylanhurtado.projectfrontdesktop.controllers;
 
 import es.dylanhurtado.projectfrontdesktop.dto.InfraestructuraDTO;
 import es.dylanhurtado.projectfrontdesktop.mapper.Mapper;
+
 import es.dylanhurtado.projectfrontdesktop.model.Pista;
 import es.dylanhurtado.projectfrontdesktop.model.Reserva;
 import es.dylanhurtado.projectfrontdesktop.model.User;
@@ -80,8 +81,11 @@ public class ListController implements Initializable {
     private String sportType;
 
     private RestOperations restOperations;
-
+  
     private Mapper mapper;
+
+    private List<InfraestructuraDTO> infraestructuraDTOS;
+
 
 
     @Override
@@ -207,12 +211,43 @@ public class ListController implements Initializable {
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setOnAction(actionEvent1 -> {
-                pistaController.getSelectedItem().setTitle(pistaController.getTitleTextField().getText());
-                pistaController.getSelectedItem().setPrice(Double.valueOf(pistaController.getPriceTextField().getText()));
-                pistaController.getSelectedItem().setDescription(pistaController.getDescriptionTextField().getText());
-                editButton.setVisible(true);
-                pistaController.blockTextFields();
-                saveButton.setVisible(false);
+                boolean encontrado = true;
+                int cont=0;
+                while (cont<infraestructuraDTOS.size() || encontrado){
+                    if(infraestructuraDTOS.get(cont).getId()==pistaController.getSelectedItem().getId()){
+                        infraestructuraDTOS.get(cont).setNombre(pistaController.getTitleTextField().getText());
+                        infraestructuraDTOS.get(cont).setApertura(Integer.parseInt(pistaController.getAperturaField().getText()));
+                        infraestructuraDTOS.get(cont).setCierre(Integer.parseInt(pistaController.getCierreTextField().getText()));
+                        infraestructuraDTOS.get(cont).setTipo(sportType);
+                        infraestructuraDTOS.get(cont).setCoste(Double.parseDouble(pistaController.getPriceTextField().getText()));
+                        infraestructuraDTOS.get(cont).setDescripcion(pistaController.getDescriptionTextField().getText());
+                        encontrado=false;
+                        try {
+                            Response<InfraestructuraDTO> updateResponse = restOperations.infraestructuraUpdate(infraestructuraDTOS.get(cont)).execute();
+                            if(updateResponse.isSuccessful()&&updateResponse.code()==200){
+                                showHome();
+                                pistaController.getSelectedItem().setTitle(pistaController.getTitleTextField().getText());
+                                pistaController.getSelectedItem().setPrice(Double.valueOf(pistaController.getPriceTextField().getText()));
+                                pistaController.getSelectedItem().setDescription(pistaController.getDescriptionTextField().getText());
+                                pistaController.getSelectedItem().setApertura(Integer.parseInt(pistaController.getAperturaField().getText()));
+                                pistaController.getSelectedItem().setCierre(Integer.parseInt(pistaController.getCierreTextField().getText()));
+                                editButton.setVisible(true);
+                                pistaController.blockTextFields();
+                                saveButton.setVisible(false);
+                            }else{
+                                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                                alert1.setTitle("Error 404");
+                                alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                                alert1.show();
+                            }
+                        } catch (IOException e) {
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Error 404");
+                            alert1.setHeaderText("Llamada a la api fallida al cargar las reservas");
+                            alert1.show();
+                        }
+                    }
+                }
             });
         });
     }
@@ -450,6 +485,14 @@ public class ListController implements Initializable {
 
     public Button getAddButton() {
         return addButton;
+    }
+
+    public List<InfraestructuraDTO> getInfraestructuraDTOS() {
+        return infraestructuraDTOS;
+    }
+
+    public void setInfraestructuraDTOS(List<InfraestructuraDTO> infraestructuraDTOS) {
+        this.infraestructuraDTOS = infraestructuraDTOS;
     }
 }
 

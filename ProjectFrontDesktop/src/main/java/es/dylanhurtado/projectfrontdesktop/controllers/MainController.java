@@ -204,6 +204,7 @@ public class MainController implements Initializable {
             List<InfraestructuraDTO> infraestructurasDTO = infraestructuraResponse.body();
             listController.addReservastoList(mapper.toReserva(infraestructurasDTO));
             listController.addPistastoList(mapper.toPista(infraestructurasDTO));
+            listController.setInfraestructuraDTOS(infraestructurasDTO);
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error 404");
