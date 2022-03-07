@@ -170,6 +170,7 @@ public class ListController implements Initializable {
                     }
                     cont++;
                 }
+                
                 if(encontrado){
                     try {
                         Response<InfraestructuraDTO> updateResponse = restOperations.infraestructuraUpdate(infraestructuraDTOS.get(lug)).execute();
