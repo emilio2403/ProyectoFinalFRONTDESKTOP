@@ -170,6 +170,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        adminNameLabel.setText("Admin");
         mapper=new Mapper();
         restOperations = Config.getService();
         messageWrapper.setVisible(true);
